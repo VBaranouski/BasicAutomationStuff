@@ -13,7 +13,7 @@ public class AppTest {
 
     @Test
     public void testTwoFail(){
-        assertTrue(true);
+        assertTrue(false);
     }
 
     @Ignore
