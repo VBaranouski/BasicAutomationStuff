@@ -1,44 +1,34 @@
-
-
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
-
-import static org.junit.Assert.assertTrue;
 
 public class AppTest {
 
 
 
-    @BeforeTest
-    public void startTest(){
-        System.out.println("Start!");
-    }
-
+    /*
     @Test
-    public void testOnePass(){
-        assertTrue(true);
+    public void testFirefoxRun() {
+        System.setProperty("webdriver.gecko.driver", "/Users/Vlad/Documents/Automation/geckodriver");
+
+        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        capabilities.setCapability("marionette",true);
+        capabilities.setBrowserName("firefox");
+        capabilities.setCapability("platform", Platform.ANY);
+        WebDriver driver = new FirefoxDriver(capabilities);
+        driver.navigate().to("http://www.gmail.com");
+        driver.close();
 
     }
 
+    */
     @Test
-    public void testTwoFail(){
-        assertTrue(false);
-    }
+    public void testChromeRun() {
 
 
-    @Test
-    public void testThreeNotReady(){
-        assertTrue(true);
+        System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
+        ChromeDriver driver = new ChromeDriver();
+        driver.get("http://www.google.com");
+        driver.close();
     }
 
-    @Test
-    public void testFourFail(){
-        assertTrue(true);
-    }
-
-    @AfterTest
-    public void stopTest(){
-        System.out.println("Stop!");
-    }
 }
