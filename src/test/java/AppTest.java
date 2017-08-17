@@ -16,10 +16,10 @@ public class AppTest {
 
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability("marionette",true);
-        capabilities.setBrowserName("firefox");
-        capabilities.setCapability("version", 55);
+        capabilities.setCapability("browserName","firefox");
+        capabilities.setCapability("version", "55.0.2");
         capabilities.setCapability("platform", Platform.ANY);
-        WebDriver driver = new FirefoxDriver();
+        WebDriver driver = new FirefoxDriver(capabilities);
         driver.navigate().to("http://www.gmail.com");
         driver.close();
 
