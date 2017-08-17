@@ -10,7 +10,7 @@ public class AppTest {
 
 
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     public void testFirefoxRun() {
         System.setProperty("webdriver.gecko.driver", "/Users/Vlad/Documents/Automation/geckodriver");
         WebDriver driver = new FirefoxDriver();
@@ -20,7 +20,7 @@ public class AppTest {
     }
 
 
-    @Test (enabled = true)
+    @Test (enabled = false)
     public void testChromeRun() {
         System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
         ChromeDriver driver = new ChromeDriver();
