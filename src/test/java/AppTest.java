@@ -20,7 +20,7 @@ public class AppTest {
     }
 
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     public void testChromeRun() {
         System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
         ChromeDriver driver = new ChromeDriver();
