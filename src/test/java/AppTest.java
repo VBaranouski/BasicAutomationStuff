@@ -1,11 +1,15 @@
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
 
 public class AppTest {
 
 
 
-    /*
+
     @Test
     public void testFirefoxRun() {
         System.setProperty("webdriver.gecko.driver", "/Users/Vlad/Documents/Automation/geckodriver");
@@ -20,7 +24,7 @@ public class AppTest {
 
     }
 
-    */
+
     @Test
     public void testChromeRun() {
 
