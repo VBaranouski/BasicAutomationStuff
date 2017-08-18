@@ -29,9 +29,7 @@ public class AppTest {
         searchField.sendKeys("Hello");
         WebElement searchButton = driver.findElement(By.name("btnK"));
         searchButton.click();
-
-
-        //driver.close();
+        driver.close();
     }
 
 }
