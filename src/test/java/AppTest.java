@@ -11,7 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 public class AppTest {
 
-WebDriver driver;
+static WebDriver driver;
+private final By searchFieldLocator = By.id("lst-ib");
 
 
 
@@ -24,33 +25,31 @@ WebDriver driver;
 
     }
 
-
-    @Test (enabled = false)
+    @Test (enabled = true)
     public void testChromeRun() {
-        System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
-        ChromeDriver driver = new ChromeDriver();
+            driver = createChromeDriver(driver);
             driver.get("http://www.google.com");
-            WebElement searchField = driver.findElement(By.id("lst-ib"));
-            searchField.sendKeys("Hello");
+            driver.findElement(searchFieldLocator).sendKeys("Hello");
             WebElement searchButton = driver.findElement(By.name("btnK"));
             searchButton.click();
-
-
+            closeWebBrowser();
     }
 
-    @Test (enabled = true)
+
+
+
+    @Test (enabled = false)
     public void testVideoPause() throws InterruptedException {
-        //System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
-        //ChromeDriver driver = new ChromeDriver();
         driver = createChromeDriver(driver);
         driver.get("http://bit.ly/2sksqvJ");
         WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.elementToBeClickable(By.className("edge-gui-playback-button")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("edge-gui-progress-bar")));
         screenPointer(driver);
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         fullScreenClick(driver);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         pausePlay(driver);
-            driver.close();
+        closeWebBrowser();
 
 
 
@@ -59,11 +58,18 @@ WebDriver driver;
 
     public static WebDriver createChromeDriver(WebDriver driver){
         System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
-        if (driver==null){
-        driver = new ChromeDriver();}
+        if (driver==null) {
+        driver = new ChromeDriver();
+        }
         return driver;
     }
 
+    public static void closeWebBrowser(){
+        if (null != driver){
+            driver.quit();
+        }
+        driver = null;
+    }
 
 
     public static WebDriver pausePlay(WebDriver driver)  {
@@ -86,3 +92,5 @@ WebDriver driver;
     }
 
 }
+
+
