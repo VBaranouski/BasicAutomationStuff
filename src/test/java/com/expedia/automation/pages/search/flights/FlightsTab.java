@@ -54,12 +54,10 @@ public class FlightsTab {
     private WebElement titleText;
 
 
-
     WebDriver driver;
     String searchResult;
 
     private static final Logger LOGGER = Logger.getLogger(FlightsTab.class);
-
 
 
     public FlightsTab (WebDriver driver){
@@ -86,6 +84,7 @@ public class FlightsTab {
         searchResult = titleText.getText();
         Assert.assertEquals(searchResult,"Select your departure to New York");
          LOGGER.info("Searching flights...");
+
 
 
     }
