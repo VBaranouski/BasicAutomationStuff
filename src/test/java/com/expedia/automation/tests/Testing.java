@@ -36,7 +36,7 @@ public class Testing {
     }
 
 
-    @Test (groups = { "full" })
+    @Test (priority = 1, groups = { "full" })
     public void openSignInScreen(){
         Browser homePage = new Browser();
         homePage.openExpedia(driver);
@@ -45,14 +45,14 @@ public class Testing {
     }
 
 
-    @Test (dependsOnMethods = "openSignInScreen", groups = { "full" })
+    @Test (priority = 2, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(driver,EMAIL, PASSWORD);
     }
 
 
-    @Test (groups = { "smoke","full" })
+    @Test (priority = 3, groups = { "smoke","full" })
     public void searchFlightCheck(){
         Browser homePage = new Browser();
         homePage.openExpedia(driver);

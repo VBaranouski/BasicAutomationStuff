@@ -8,17 +8,17 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        System.out.println("Tetsing has started");
+        System.out.println(iTestResult.getName() + ": has started");
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println("All tests are passed");
+        System.out.println(iTestResult.getName() + ": passed");
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("Test Failed: " + iTestResult.getName());
+        System.out.println(iTestResult.getName()+ ": failed!");
 
     }
 
@@ -40,6 +40,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext iTestContext) {
+        System.out.println("All done");
 
     }
 }
