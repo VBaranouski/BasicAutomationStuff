@@ -4,7 +4,7 @@
     <test name="ExpediaSmoke" >
         <groups>
             <run>
-                <include name="smoke"/>
+                <include name="full"/>
             </run>
         </groups>
 

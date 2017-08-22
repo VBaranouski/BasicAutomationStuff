@@ -1,4 +1,5 @@
 package com.expedia.automation.tests;
+import com.expedia.automation.Listener.TestListener;
 import com.expedia.automation.browser.Browser;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
@@ -6,11 +7,13 @@ import com.expedia.automation.pages.signin.SignInPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.expedia.automation.browser.Browser.closeWebBrowser;
 import static com.expedia.automation.browser.Browser.createDriver;
 
+@Listeners(TestListener.class)
 
 public class Testing {
 
