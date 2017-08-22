@@ -11,13 +11,16 @@ import org.testng.log4testng.Logger;
 
 public class FlightsTab {
 
-    // navigation
+    // Navigation
 
     @FindBy (id = "tab-flight-tab-hp")
     private WebElement flight;
 
     @FindBy (id = "flight-type-roundtrip-label-hp-flight")
     private WebElement roundTripTab;
+
+
+    //Search flight
 
     @FindBy (id = "flight-origin-hp-flight")
     private WebElement flyingFrom;
@@ -49,7 +52,8 @@ public class FlightsTab {
     private WebElement closeCalendar;
 
 
-    //search results page
+    //Search-results page
+
     @FindBy (className = "title-city-text")
     private WebElement titleText;
 
