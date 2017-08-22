@@ -1,4 +1,5 @@
 package com.expedia.automation.tests;
+import com.expedia.automation.Listener.SuiteListener;
 import com.expedia.automation.Listener.TestListener;
 import com.expedia.automation.browser.Browser;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
 import static com.expedia.automation.browser.Browser.closeWebBrowser;
 import static com.expedia.automation.browser.Browser.createDriver;
 
-@Listeners(TestListener.class)
+@Listeners({TestListener.class, SuiteListener.class})
 
 public class Testing {
 
