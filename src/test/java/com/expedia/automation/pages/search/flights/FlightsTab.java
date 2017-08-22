@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.log4testng.Logger;
 
 public class FlightsTab {
 
@@ -48,19 +49,18 @@ public class FlightsTab {
     private WebElement closeCalendar;
 
 
-    //search results
+    //search results page
     @FindBy (className = "title-city-text")
     private WebElement titleText;
 
 
 
-
-    public String getSearchResult() {
-        return searchResult;
-    }
-
     WebDriver driver;
     String searchResult;
+
+    private static final Logger LOGGER = Logger.getLogger(FlightsTab.class);
+
+
 
     public FlightsTab (WebDriver driver){
         this.driver = driver;
@@ -71,6 +71,7 @@ public class FlightsTab {
     public void searchFligthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults){
         flight.click();
         roundTripTab.click();
+          LOGGER.info("Flight tab is opened");
         flyingFrom.sendKeys(fromCity);
         flyingTo.sendKeys(toCity);
         returningDate.sendKeys(dateReturn);
@@ -79,14 +80,12 @@ public class FlightsTab {
         adultDropdown.sendKeys(String.valueOf(adults));
         addCarCheckBox.click();
         searchButton.submit();
-
+          LOGGER.info("Criteria are selected");
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(titleText));
-
         searchResult = titleText.getText();
-
         Assert.assertEquals(searchResult,"Select your departure to New York");
-
+         LOGGER.info("Searching flights...");
 
 
     }

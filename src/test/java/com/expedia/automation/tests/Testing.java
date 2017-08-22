@@ -32,12 +32,6 @@ public class Testing {
     }
 
     @Test (enabled = true, priority = 1)
-    public void openHomePage(){
-       Browser homePage = new Browser();
-       homePage.openExpedia(driver);
-    }
-
-    @Test (enabled = true, priority = 2)
     public void openSignInScreen(){
         Browser homePage = new Browser();
         homePage.openExpedia(driver);
@@ -45,14 +39,14 @@ public class Testing {
         signIn.openSignInScreen(driver);
     }
 
-    @Test (enabled = true, priority = 3, dependsOnMethods = "openSignInScreen")
+    @Test (enabled = true, priority = 2, dependsOnMethods = "openSignInScreen")
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(driver,EMAIL, PASSWORD);
     }
 
 
-    @Test (priority = 4)
+    @Test (priority = 3)
     public void searchFlightCheck(){
         Browser homePage = new Browser();
         homePage.openExpedia(driver);

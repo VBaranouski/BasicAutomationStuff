@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.log4testng.Logger;
 
 public class SignInPage {
 
@@ -31,6 +32,8 @@ public class SignInPage {
 
 
     private WebDriver driver;
+    private static final Logger LOGGER = Logger.getLogger(SignInPage.class);
+
 
     public SignInPage(WebDriver driver){
         this.driver = driver;
@@ -43,9 +46,7 @@ public class SignInPage {
             emailAdd.sendKeys(email);
             password.sendKeys(pass);
             subminButton.click();
-
-
-
+              LOGGER.info("User is signed in");
 
     }
 
