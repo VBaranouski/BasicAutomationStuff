@@ -1,5 +1,4 @@
 package com.expedia.automation.tests;
-
 import com.expedia.automation.browser.Browser;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
@@ -14,6 +13,7 @@ import static com.expedia.automation.browser.Browser.createDriver;
 
 
 public class Testing {
+
     WebDriver driver;
 
     private static final String EMAIL = "vladislav.baranovski1@gmail.com";
@@ -25,13 +25,15 @@ public class Testing {
     private static final String DATERETURN = "09/30/2017";
 
 
+
     @BeforeTest (groups = { "full","smoke" })
     public WebDriver createDriverForTests(){
         driver = createDriver(driver);
         return driver;
     }
 
-    @Test (enabled = true, groups = { "full" })
+
+    @Test (groups = { "full" })
     public void openSignInScreen(){
         Browser homePage = new Browser();
         homePage.openExpedia(driver);
@@ -39,14 +41,15 @@ public class Testing {
         signIn.openSignInScreen(driver);
     }
 
-    @Test (enabled = true, dependsOnMethods = "openSignInScreen", groups = { "full" })
+
+    @Test (dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(driver,EMAIL, PASSWORD);
     }
 
 
-    @Test (priority = 3, groups = { "smoke","full" })
+    @Test (groups = { "smoke","full" })
     public void searchFlightCheck(){
         Browser homePage = new Browser();
         homePage.openExpedia(driver);
