@@ -1,12 +1,12 @@
 package com.expedia.automation.pages.signin;
 
+import com.expedia.automation.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.log4testng.Logger;
 
-public class SignInPage {
+public class SignInPage extends BasePage{
 
 
     @FindBy (id = "signin-loginid")
@@ -30,14 +30,11 @@ public class SignInPage {
     @FindBy (id = "gss-signin-submit")
     private WebElement subminButtonPopup;
 
-
-    private WebDriver driver;
     private static final Logger LOGGER = Logger.getLogger(SignInPage.class);
 
 
     public SignInPage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
 

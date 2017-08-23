@@ -1,15 +1,17 @@
 package com.expedia.automation.pages.search.flights;
 
+import com.expedia.automation.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.log4testng.Logger;
 
-public class FlightsTab {
+public class FlightsTab extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(FlightsTab.class);
+
+    String searchResult;
+
 
     // Navigation
 
@@ -18,7 +20,6 @@ public class FlightsTab {
 
     @FindBy (id = "flight-type-roundtrip-label-hp-flight")
     private WebElement roundTripTab;
-
 
     //Search flight
 
@@ -34,11 +35,8 @@ public class FlightsTab {
     @FindBy (id = "flight-add-car-checkbox-hp-flight")
     private WebElement addCarCheckBox;
 
-
     @FindBy (xpath = "//*[@id=\"gcw-flights-form-hp-flight\"]/div[8]/label/button")//(className = "btn-primary btn-action gcw-submit")
     private WebElement searchButton;
-
-
 
     //Calendar
 
@@ -51,23 +49,22 @@ public class FlightsTab {
     @FindBy (xpath = "//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[1]")
     private WebElement closeCalendar;
 
-
     //Search-results page
 
     @FindBy (className = "title-city-text")
     private WebElement titleText;
 
 
-    WebDriver driver;
-    String searchResult;
 
-    private static final Logger LOGGER = Logger.getLogger(FlightsTab.class);
+    public void setSearchResult(String searchResult) {
+        this.searchResult = searchResult;
+    }
+
+    public String getSearchResult() { return searchResult; }
 
 
     public FlightsTab (WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-
+        super(driver);
     }
 
     public void searchFligthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults){
@@ -81,13 +78,12 @@ public class FlightsTab {
         closeCalendar.click();
         adultDropdown.sendKeys(String.valueOf(adults));
         addCarCheckBox.click();
+
+        LOGGER.info("Criteria are selected");
         searchButton.submit();
-          LOGGER.info("Criteria are selected");
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.visibilityOf(titleText));
-        searchResult = titleText.getText();
-        Assert.assertEquals(searchResult,"Select your departure to New York");
-         LOGGER.info("Searching flights...");
+        setSearchResult(titleText.getText());
+
+
 
 
 
