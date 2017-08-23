@@ -5,7 +5,6 @@ import com.expedia.automation.pages.signin.SignInPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class HeaderMenuAccount extends BasePage {
 
@@ -19,7 +18,6 @@ public class HeaderMenuAccount extends BasePage {
 
     public HeaderMenuAccount(WebDriver driver){
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public SignInPage openSignInScreen(WebDriver driver) {

@@ -25,11 +25,11 @@ public class BaseTest {
     public WebDriver createDriverForTests(){
         driver = createDriver(driver);
         return driver;
+
     }
 
     @AfterTest(groups = { "full","smoke" })
     public void closeBrowsers(){
-        Browser br = new Browser();
-        br.closeWebBrowser(driver);
+        Browser.createDriver(driver).close();
     }
 }

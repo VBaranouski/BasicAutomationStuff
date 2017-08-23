@@ -4,7 +4,6 @@ import com.expedia.automation.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.log4testng.Logger;
 
 public class FlightsTab extends BasePage {
@@ -66,8 +65,6 @@ public class FlightsTab extends BasePage {
 
     public FlightsTab (WebDriver driver){
         super(driver);
-        PageFactory.initElements(driver, this);
-
     }
 
     public void searchFligthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults){
@@ -82,7 +79,7 @@ public class FlightsTab extends BasePage {
         adultDropdown.sendKeys(String.valueOf(adults));
         addCarCheckBox.click();
 
-          LOGGER.info("Criteria are selected");
+        LOGGER.info("Criteria are selected");
         searchButton.submit();
         setSearchResult(titleText.getText());
 

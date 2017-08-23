@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 public class Testing extends BaseTest {
 
 
+
     @Test (priority = 1, groups = { "full" })
     public void openSignInScreen(){
         HomePage homePage = new HomePage(driver);
@@ -23,7 +24,7 @@ public class Testing extends BaseTest {
     }
 
 
-    @Test (dependsOnMethods = "openSignInScreen", groups = { "full" })
+    @Test (priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(driver,EMAIL, PASSWORD);
