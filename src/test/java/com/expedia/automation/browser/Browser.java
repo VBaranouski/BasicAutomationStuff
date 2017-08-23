@@ -1,6 +1,5 @@
 package com.expedia.automation.browser;
 
-import com.expedia.automation.pages.signin.SignInPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.log4testng.Logger;
@@ -10,7 +9,7 @@ public class Browser {
 
     private static WebDriver driver;
     private static final String URL = "http://www.expedia.com";
-    private static final Logger LOGGER = Logger.getLogger(SignInPage.class);
+    private static final Logger LOGGER = Logger.getLogger(Browser.class);
 
     public static WebDriver createDriver(WebDriver driver){
         System.setProperty("webdriver.chrome.driver", "/Users/Vlad/Documents/Automation/chromedriver");
