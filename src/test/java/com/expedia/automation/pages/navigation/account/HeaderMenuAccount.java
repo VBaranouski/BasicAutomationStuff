@@ -15,7 +15,6 @@ public class HeaderMenuAccount extends BasePage {
     private WebElement singInLink;
 
 
-
     public HeaderMenuAccount(WebDriver driver){
         super(driver);
     }
