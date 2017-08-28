@@ -70,7 +70,7 @@ public class FlightsTab extends BasePage {
     public void searchFligthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults){
         flight.click();
         roundTripTab.click();
-          LOGGER.info("Flight tab is opened");
+        LOGGER.info("Flight tab is opened");
         flyingFrom.sendKeys(fromCity);
         flyingTo.sendKeys(toCity);
         returningDate.sendKeys(dateReturn);
@@ -78,15 +78,10 @@ public class FlightsTab extends BasePage {
         closeCalendar.click();
         adultDropdown.sendKeys(String.valueOf(adults));
         addCarCheckBox.click();
-
         LOGGER.info("Criteria are selected");
         searchButton.submit();
         setSearchResult(titleText.getText());
-
-
-
-
-
+        
     }
 
 

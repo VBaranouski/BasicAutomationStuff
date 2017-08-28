@@ -1,4 +1,4 @@
-package com.expedia.automation.Listener;
+package com.expedia.automation.listener;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;

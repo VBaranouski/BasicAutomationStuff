@@ -1,4 +1,4 @@
-package com.expedia.automation.Listener;
+package com.expedia.automation.listener;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
