@@ -44,15 +44,15 @@ public class Testing extends BaseTest {
 
 
 
-    @Factory (dataProvider = "adultsInfoProvider")
+    @Factory (dataProvider = "adultsAndDestProvider")
     public Testing(int adults, String flt) {
-        this.adults = adults;
-        this.flt = flt;
+        this.adultsCount = adults;
+        this.flightDestination = flt;
 
     }
 
     @DataProvider
-    static public Object[][] adultsInfoProvider(){
+    static public Object[][] adultsAndDestProvider(){
         return new Object[][] {{3, "New York, NY (NYC-All Airports)"}};
     }
 
@@ -61,7 +61,7 @@ public class Testing extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, flt, Constants.DATEDEPART, Constants.DATERETURN, adults);
+        flights.searchFligthWithCar(Constants.FLYINGFROM, flightDestination, Constants.DATEDEPART, Constants.DATERETURN, adultsCount);
         Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
     }
 }

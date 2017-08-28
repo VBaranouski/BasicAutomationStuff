@@ -10,8 +10,8 @@ import static com.expedia.automation.driver.Singleton.getInstance;
 public class BaseTest {
 
     WebDriver driver;
-    int adults;
-    String flt;
+    int adultsCount;
+    String flightDestination;
 
     @BeforeTest(groups = { "full","smoke" })
     public WebDriver createDriverForTests(){
