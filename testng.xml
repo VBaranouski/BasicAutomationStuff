@@ -1,7 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite_One" verbose="1" parallel="tests" thread-count="5">
-    <test name="ExpediaFull" >
+    <parameter name="AdultsCount"  value="4"/>
+    <listeners>
+        <listener class-name="com.expedia.automation.listener.SuiteListener" />
+        <listener class-name="com.expedia.automation.listener.TestListener" />
+    </listeners>
+
+<test name="ExpediaFull" >
         <groups>
             <run>
                 <include name="full"/>

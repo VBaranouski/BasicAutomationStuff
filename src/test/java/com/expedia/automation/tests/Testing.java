@@ -1,7 +1,5 @@
 package com.expedia.automation.tests;
 import com.expedia.automation.constants.Constants;
-import com.expedia.automation.listener.SuiteListener;
-import com.expedia.automation.listener.TestListener;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
@@ -9,10 +7,9 @@ import com.expedia.automation.pages.signin.SignInPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-@Listeners({TestListener.class, SuiteListener.class})
 
 public class Testing extends BaseTest {
 
@@ -32,7 +29,7 @@ public class Testing extends BaseTest {
         sign.signIn(driver, Constants.EMAIL, Constants.PASSWORD);
     }
 
-    @Test (enabled = true, priority = 4, groups = { "full" })
+    @Test (enabled = false, priority = 4, groups = { "full" })
     public void searchFlightCheck(){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
@@ -62,6 +59,17 @@ public class Testing extends BaseTest {
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
         flights.searchFligthWithCar(Constants.FLYINGFROM, flightDestination, Constants.DATEDEPART, Constants.DATERETURN, adultsCount);
+        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
+    }
+
+
+    @Parameters ({"AdultsCount"})
+    @Test (enabled = false, priority = 4, groups = { "full" })
+    public void paramFlightCheckk(int AdultsCount){
+        HomePage homePage = new HomePage(driver);
+        homePage.openExpedia(driver);
+        FlightsTab flights = new FlightsTab(driver);
+        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, AdultsCount);
         Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
     }
 }
