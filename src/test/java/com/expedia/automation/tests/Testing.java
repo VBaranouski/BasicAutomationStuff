@@ -4,6 +4,7 @@ import com.expedia.automation.constants.Constants;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
+import com.expedia.automation.pages.signin.MyAccount;
 import com.expedia.automation.pages.signin.SignInPage;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
@@ -25,13 +26,16 @@ public class Testing extends BaseTest {
     @Test (priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
-        sign.signIn(driver, Constants.EMAIL, Constants.PASSWORD);
+        sign.signIn(Constants.EMAIL, Constants.PASSWORD);
+        MyAccount myAcc = new MyAccount(driver);
+        myAcc.openMyAccountPage();
+        Assert.assertEquals(myAcc.getUserName(), username);
     }
 
 
 
     @Test (groups = { "smoke","full" })
-    public void searchFlightCheckViaDataProvider(int adults, String flightDest, String city) {
+    public void flightSearchViaDataProvider(int adults, String flightDest, String city) {
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
@@ -40,14 +44,14 @@ public class Testing extends BaseTest {
     }
 
 
-    @Parameters({"adults"})
+    @Parameters({"adults", "city"})
     @Test (groups = { "full" })
-    public void paramFlightCheck(int adults){
+    public void flightSearchViaParameters(int adults, String city){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
         flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, adults);
-        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " New York" );
+        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " " + city);
     }
 
 }

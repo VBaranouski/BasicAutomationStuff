@@ -12,15 +12,14 @@ public class AnnotationTransformer implements IAnnotationTransformer {
 
     @Override
     public void transform(ITestAnnotation annotation, Class aClass, Constructor constructor, Method testMethod) {
-        annotation.setRetryAnalyzer(RetryAnalyzer.class);
 
-        annotation.setEnabled(true);
+        annotation.setEnabled(false);
 
         if (testMethod.getName().equals("openSignInScreen"))
         {
+            annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setEnabled(true);
             annotation.setPriority(1);
-
         }
 
         else if (testMethod.getName().equals("loginTo"))
@@ -29,20 +28,20 @@ public class AnnotationTransformer implements IAnnotationTransformer {
             annotation.setPriority(2);
         }
 
-        else if (testMethod.getName().equals("searchFlightCheckViaDataProvider"))
+        else if (testMethod.getName().equals("flightSearchViaDataProvider"))
         {
             annotation.setEnabled(true);
+            annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setPriority(3);
             annotation.setDataProviderClass(DataProvider.class);
             annotation.setDataProvider("adultDestCity");
         }
 
-        else if (testMethod.getName().equals("paramFlightCheck"))
+        else if (testMethod.getName().equals("flightSearchViaParameters"))
         {
+            annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setEnabled(true);
             annotation.setPriority(4);
         }
-
-
     }
 }
