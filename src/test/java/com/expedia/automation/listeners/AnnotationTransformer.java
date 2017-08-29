@@ -1,4 +1,4 @@
-package com.expedia.automation.listener;
+package com.expedia.automation.listeners;
 
 import com.expedia.automation.tests.DataProvider;
 import com.expedia.automation.utils.RetryAnalyzer;

@@ -20,6 +20,7 @@ public class Testing extends BaseTest {
         homePage.openExpedia(driver);
         HeaderMenuAccount signIn = new HeaderMenuAccount(driver);
         signIn.openSignInScreen(driver);
+        Assert.assertEquals(signIn.getSigninPageTitle(), signInpageTitle);
     }
 
 

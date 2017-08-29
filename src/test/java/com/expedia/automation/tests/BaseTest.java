@@ -11,6 +11,7 @@ public class BaseTest {
 
     WebDriver driver;
     String username = "Hello, QA";
+    String signInpageTitle = "Sign in or select an option";
 
     @BeforeTest(groups = { "full","smoke" })
     public WebDriver createDriverForTests(){
