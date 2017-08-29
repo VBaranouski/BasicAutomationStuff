@@ -38,13 +38,14 @@ public class SignInPage extends BasePage{
     }
 
 
-    public void signIn(WebDriver driver, String email, String pass){
+    public void signIn(String email, String pass){
 
             emailAdd.sendKeys(email);
             password.sendKeys(pass);
             subminButton.click();
-              LOGGER.info("User is signed in");
+
 
     }
+
 
 }

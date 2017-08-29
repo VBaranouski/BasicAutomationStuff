@@ -10,7 +10,7 @@ import static com.expedia.automation.driver.Singleton.getInstance;
 public class BaseTest {
 
     WebDriver driver;
-
+    String username = "Hello, QA";
 
     @BeforeTest(groups = { "full","smoke" })
     public WebDriver createDriverForTests(){
