@@ -5,13 +5,14 @@ import org.testng.ITestResult;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
 
-    int retryCount = 1;
+    int retryCount = 0;
+    int maxRetryCount =1;
 
     @Override
     public boolean retry(ITestResult iTestResult) {
         System.out.println(iTestResult.getName() + ": test seems failed... retrying");
-        if (0 < retryCount){
-            retryCount--;
+        if (retryCount<maxRetryCount){
+            retryCount++;
             return true;
         }
         return false;
