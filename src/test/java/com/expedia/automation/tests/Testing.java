@@ -6,8 +6,6 @@ import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
 import com.expedia.automation.pages.signin.SignInPage;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Factory;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -15,7 +13,7 @@ import org.testng.annotations.Test;
 public class Testing extends BaseTest {
 
 
-    @Test (enabled = false, priority = 10, groups = { "full" })
+    @Test (groups = { "full" })
     public void openSignInScreen(){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
@@ -24,53 +22,32 @@ public class Testing extends BaseTest {
     }
 
 
-    @Test (enabled = true, priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
+    @Test (priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(driver, Constants.EMAIL, Constants.PASSWORD);
     }
 
-    @Test (enabled = true, priority = 4, groups = { "full" })
-    public void searchFlightCheck(){
+
+
+    @Test (groups = { "smoke","full" })
+    public void searchFlightCheckViaDataProvider(int adults, String flightDest, String city) {
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, 2);
-        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
+        flights.searchFligthWithCar(Constants.FLYINGFROM, flightDest, Constants.DATEDEPART, Constants.DATERETURN, adults);
+        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " " + city);
     }
 
 
-
-    @Factory(dataProvider = "adultsAndDestProvider" )
-    public Testing(int adults, String flt) {
-        this.adultsCount = adults;
-        this.flightDestination = flt;
-
-    }
-
-    @DataProvider
-    static public Object[][] adultsAndDestProvider(){
-        return new Object[][] {{3, "New York, NY (NYC-All Airports)"}};
-    }
-
-
-    @Test (enabled = true, priority = 3, groups = { "smoke","full" })
-    public void searchFlightCheckViaProvider() {
+    @Parameters({"adults"})
+    @Test (groups = { "full" })
+    public void paramFlightCheck(int adults){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, flightDestination, Constants.DATEDEPART, Constants.DATERETURN, adultsCount);
-        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
+        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, adults);
+        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " New York" );
     }
 
-
-    @Parameters ({"adultsCountParam"})
-    @Test (enabled = false, priority = 4, groups = { "full" })
-    public void paramFlightCheck(int adultsCountParam){
-        HomePage homePage = new HomePage(driver);
-        homePage.openExpedia(driver);
-        FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, adultsCountParam);
-        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
-    }
 }

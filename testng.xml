@@ -1,7 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite_One" verbose="1" parallel="tests" thread-count="5">
-    <parameter name="AdultsCount"  value="4"/>
+    <parameter name="adults"  value="2"/>
+
     <listeners>
         <listener class-name="com.expedia.automation.listener.SuiteListener" />
         <listener class-name="com.expedia.automation.listener.TestListener" />

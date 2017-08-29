@@ -12,5 +12,5 @@ public class Constants {
     public static final String DATEDEPART = "09/25/2017";
     public static final String DATERETURN = "09/30/2017";
 
-    public static final String RESULTPAGETITLE = "Select your departure to New York";
+    public static final String RESULTPAGETITLE = "Select your departure to";
 }
