@@ -1,4 +1,5 @@
 package com.expedia.automation.tests;
+
 import com.expedia.automation.constants.Constants;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
@@ -14,14 +15,12 @@ import org.testng.annotations.Test;
 public class Testing extends BaseTest {
 
 
-    @Test (enabled = true, priority = 1, groups = { "full" })
+    @Test (enabled = false, priority = 10, groups = { "full" })
     public void openSignInScreen(){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         HeaderMenuAccount signIn = new HeaderMenuAccount(driver);
         signIn.openSignInScreen(driver);
-        FlightsTab flights = new FlightsTab(driver);
-
     }
 
 
@@ -42,8 +41,7 @@ public class Testing extends BaseTest {
 
 
 
-
-    @Factory (dataProvider = "adultsAndDestProvider")
+    @Factory(dataProvider = "adultsAndDestProvider" )
     public Testing(int adults, String flt) {
         this.adultsCount = adults;
         this.flightDestination = flt;
@@ -54,6 +52,7 @@ public class Testing extends BaseTest {
     static public Object[][] adultsAndDestProvider(){
         return new Object[][] {{3, "New York, NY (NYC-All Airports)"}};
     }
+
 
     @Test (enabled = true, priority = 3, groups = { "smoke","full" })
     public void searchFlightCheckViaProvider() {
@@ -67,7 +66,7 @@ public class Testing extends BaseTest {
 
     @Parameters ({"adultsCountParam"})
     @Test (enabled = false, priority = 4, groups = { "full" })
-    public void paramFlightCheckk(int adultsCountParam){
+    public void paramFlightCheck(int adultsCountParam){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
