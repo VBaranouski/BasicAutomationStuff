@@ -65,13 +65,13 @@ public class Testing extends BaseTest {
     }
 
 
-    @Parameters ({"AdultsCount"})
+    @Parameters ({"adultsCountParam"})
     @Test (enabled = false, priority = 4, groups = { "full" })
-    public void paramFlightCheckk(int AdultsCount){
+    public void paramFlightCheckk(int adultsCountParam){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, AdultsCount);
+        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, adultsCountParam);
         Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
     }
 }
