@@ -69,11 +69,11 @@ public class FlightsTab extends BasePage {
 
     public void searchFligthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults){
         flight.click();
-        roundTripTab.click();
-        LOGGER.info("Flight tab is opened");
         flyingFrom.sendKeys(fromCity);
         flyingTo.sendKeys(toCity);
+        returningDate.clear();
         returningDate.sendKeys(dateReturn);
+        departingDate.clear();
         departingDate.sendKeys(dateDepart);
         closeCalendar.click();
         adultDropdown.sendKeys(String.valueOf(adults));

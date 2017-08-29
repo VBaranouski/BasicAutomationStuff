@@ -1,4 +1,4 @@
-package com.expedia.automation.tests;
+package com.expedia.automation;
 
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
@@ -8,7 +8,7 @@ import org.testng.xml.XmlTest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgrammaticallyRun {
+public class Runner {
     public void runTestNGTest() {
 
 
@@ -50,7 +50,7 @@ public class ProgrammaticallyRun {
     }
 
     public static void main(String args[]) {
-        ProgrammaticallyRun prRun = new ProgrammaticallyRun();
+        Runner prRun = new Runner();
         prRun.runTestNGTest();
 
 
