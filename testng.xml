@@ -5,6 +5,7 @@
     <listeners>
         <listener class-name="com.expedia.automation.listener.SuiteListener" />
         <listener class-name="com.expedia.automation.listener.TestListener" />
+        <listener class-name="com.expedia.automation.listener.AnnotationTransformer" />
     </listeners>
 
 <test name="ExpediaFull" >

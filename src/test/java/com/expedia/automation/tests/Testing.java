@@ -20,10 +20,12 @@ public class Testing extends BaseTest {
         homePage.openExpedia(driver);
         HeaderMenuAccount signIn = new HeaderMenuAccount(driver);
         signIn.openSignInScreen(driver);
+        FlightsTab flights = new FlightsTab(driver);
+        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE);
     }
 
 
-    @Test (enabled = true, priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
+    @Test (enabled = false, priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(driver, Constants.EMAIL, Constants.PASSWORD);
@@ -53,7 +55,7 @@ public class Testing extends BaseTest {
         return new Object[][] {{3, "New York, NY (NYC-All Airports)"}};
     }
 
-    @Test (enabled = true, priority = 3, groups = { "smoke","full" })
+    @Test (enabled = false, priority = 3, groups = { "smoke","full" })
     public void searchFlightCheckViaProvider() {
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
