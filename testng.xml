@@ -6,9 +6,9 @@
     <parameter name="adults"  value="2"/>
 
     <listeners>
-        <listener class-name="com.expedia.automation.listener.SuiteListener" />
-        <listener class-name="com.expedia.automation.listener.TestListener" />
-        <listener class-name="com.expedia.automation.listener.AnnotationTransformer" />
+        <listener class-name="com.expedia.automation.listeners.SuiteListener" />
+        <listener class-name="com.expedia.automation.listeners.TestListener" />
+        <listener class-name="com.expedia.automation.listeners.AnnotationTransformer" />
     </listeners>
 
 <test name="ExpediaFull" >

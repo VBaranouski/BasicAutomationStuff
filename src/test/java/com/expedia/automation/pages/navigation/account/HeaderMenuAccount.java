@@ -35,7 +35,7 @@ public class HeaderMenuAccount extends BasePage {
     public void  openSignInScreen(WebDriver driver) {
         accountMenu.click();
         singInLink.click();
-
+        setSigninPageTitle(pageTitle.getText());
     }
 
 }
