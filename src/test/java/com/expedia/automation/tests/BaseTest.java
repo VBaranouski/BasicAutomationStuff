@@ -13,16 +13,16 @@ public class BaseTest {
     String username = "Hello, QA";
     String signInpageTitle = "Sign in or select an option";
 
-    @BeforeTest(groups = { "full","smoke" })
+    @BeforeTest(groups = { "full","smoke"})
     public WebDriver createDriverForTests(){
-        driver = getInstance(driver);
+        driver = getInstance(driver, Singleton.DriverType.CHROME);
         return driver;
 
     }
 
-    @AfterTest(groups = { "full","smoke" })
+    @AfterTest(groups = { "full","smoke"})
     public void closeBrowsers(){
-        Singleton.getInstance(driver).close();
+        Singleton.getInstance(driver, Singleton.DriverType.CHROME).close();
     }
 
 }
