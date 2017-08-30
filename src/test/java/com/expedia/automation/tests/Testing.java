@@ -4,7 +4,7 @@ import com.expedia.automation.constants.Constants;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
-import com.expedia.automation.pages.signin.MyAccount;
+import com.expedia.automation.pages.signin.MyAccountPage;
 import com.expedia.automation.pages.signin.SignInPage;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
@@ -28,7 +28,7 @@ public class Testing extends BaseTest {
     public void loginTo(){
         SignInPage sign = new SignInPage(driver);
         sign.signIn(Constants.EMAIL, Constants.PASSWORD);
-        MyAccount myAcc = new MyAccount(driver);
+        MyAccountPage myAcc = new MyAccountPage(driver);
         myAcc.openMyAccountPage();
         Assert.assertEquals(myAcc.getUserName(), username);
     }
