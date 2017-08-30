@@ -5,10 +5,10 @@ public class DataProvider {
 
 
     @org.testng.annotations.DataProvider
-    static public Object[][] adultDestCity() {
+    static public Object[][] searchFligthInfoProfider() {
         return new Object[][]{
-                {2, "New York, NY (NYC-All Airports)", "New York"},
-                {1, "Amsterdam, Netherlands (AMS-All Airports)", "Amsterdam"},
-                {3, "London, England, UK (LON-All Airports)", "London"}};
+                {"Minsk, Belarus (MSQ-Minsk Intl.)", "New York, NY (NYC-All Airports)", "09/25/2017", "10/10/2017", 2, "New York"},
+                {"Minsk, Belarus (MSQ-Minsk Intl.)", "Amsterdam, Netherlands (AMS-All Airports)", "09/27/2017", "10/12/2017", 1, "Amsterdam"},
+                {"New York, NY (NYC-All Airports)", "London, England, UK (LON-All Airports)",  "11/27/2017", "12/12/2017", 3, "London"}};
     }
 }
