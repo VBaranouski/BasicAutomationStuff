@@ -36,11 +36,11 @@ public class Testing extends BaseTest {
 
 
     @Test (groups = { "smoke","full" })
-    public void flightSearchViaDataProvider(int adults, String flightDest, String city) {
+    public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String city) {
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, flightDest, Constants.DATEDEPART, Constants.DATERETURN, adults);
+        flights.searchFligthWithCar(flightFrom, flightDest, dateDepart, dateReturn, adults);
         Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " " + city);
     }
 

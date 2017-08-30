@@ -34,7 +34,7 @@ public class AnnotationTransformer implements IAnnotationTransformer {
             annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setPriority(3);
             annotation.setDataProviderClass(DataProvider.class);
-            annotation.setDataProvider("adultDestCity");
+            annotation.setDataProvider("searchFligthInfoProfider");
         }
 
         else if (testMethod.getName().equals("flightSearchViaParameters"))
