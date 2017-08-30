@@ -1,6 +1,6 @@
 package com.expedia.automation.listeners;
 
-import com.expedia.automation.tests.DataProvider;
+import com.expedia.automation.constants.DataProvider;
 import com.expedia.automation.utils.RetryAnalyzer;
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;

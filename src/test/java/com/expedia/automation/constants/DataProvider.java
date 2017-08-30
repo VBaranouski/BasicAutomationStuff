@@ -1,4 +1,4 @@
-package com.expedia.automation.tests;
+package com.expedia.automation.constants;
 
 
 public class DataProvider {

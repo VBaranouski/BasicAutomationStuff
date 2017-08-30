@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyAccount extends BasePage {
+public class MyAccountPage extends BasePage {
 
-    public MyAccount(WebDriver driver) {
+    public MyAccountPage(WebDriver driver) {
         super(driver);
     }
 
