@@ -11,8 +11,7 @@ public class Singleton {
     public enum DriverType {
         CHROME,
         FIREFOX,
-        IE,
-        SAFARI;
+        SAFARI
     }
 
 
