@@ -20,6 +20,9 @@ public class AnnotationTransformer implements IAnnotationTransformer {
             annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setEnabled(true);
             annotation.setPriority(1);
+            //annotation.setThreadPoolSize(3);
+            //annotation.setInvocationCount(3);
+
         }
 
         else if (testMethod.getName().equals("loginTo"))

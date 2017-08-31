@@ -19,28 +19,22 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         System.out.println(iTestResult.getName()+ ": failed!");
-
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-
-
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
         System.out.println("All done");
-
     }
 }
