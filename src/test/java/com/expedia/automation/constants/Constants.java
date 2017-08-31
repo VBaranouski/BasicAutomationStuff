@@ -12,5 +12,8 @@ public class Constants {
     public static final String DATEDEPART = "09/25/2017";
     public static final String DATERETURN = "09/30/2017";
 
+    public static final String USERNAME = "Hello, QA";
+    public static final String SIGNINPAGETITLE = "Sign in or select an option";
+
     public static final String RESULTPAGETITLE = "Select your departure to";
 }

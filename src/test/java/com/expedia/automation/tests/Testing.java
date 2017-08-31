@@ -14,13 +14,14 @@ import org.testng.annotations.Test;
 public class Testing extends BaseTest {
 
 
+
     @Test (groups = { "full" })
     public void openSignInScreen(){
         HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
         HeaderMenuAccount signIn = new HeaderMenuAccount(driver);
         signIn.openSignInScreen(driver);
-        Assert.assertEquals(signIn.getSigninPageTitle(), signInpageTitle);
+        Assert.assertEquals(signIn.getSigninPageTitle(), Constants.SIGNINPAGETITLE);
     }
 
 
@@ -30,7 +31,7 @@ public class Testing extends BaseTest {
         sign.signIn(Constants.EMAIL, Constants.PASSWORD);
         MyAccountPage myAcc = new MyAccountPage(driver);
         myAcc.openMyAccountPage();
-        Assert.assertEquals(myAcc.getUserName(), username);
+        Assert.assertEquals(myAcc.getUserName(), Constants.USERNAME);
     }
 
 
