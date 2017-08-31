@@ -13,14 +13,14 @@ public class BaseTest {
 
     @BeforeTest(groups = { "full","smoke"})
     public WebDriver createDriverForTests(){
-        driver = getInstance(driver, Singleton.DriverType.CHROME);
+        driver = getInstance(driver, Singleton.DriverType.REMOTEDRIVER);
         return driver;
 
     }
 
     @AfterTest(groups = { "full","smoke"})
     public void closeBrowsers(){
-        Singleton.getInstance(driver, Singleton.DriverType.CHROME).close();
+        Singleton.getInstance(driver, Singleton.DriverType.REMOTEDRIVER).close();
     }
 
 }
