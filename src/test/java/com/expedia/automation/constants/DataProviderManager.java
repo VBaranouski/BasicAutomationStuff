@@ -1,7 +1,7 @@
 package com.expedia.automation.constants;
 
 
-public class DataProvider {
+public class DataProviderManager {
 
 
     @org.testng.annotations.DataProvider

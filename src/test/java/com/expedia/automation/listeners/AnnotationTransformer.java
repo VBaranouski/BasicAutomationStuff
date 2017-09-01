@@ -1,6 +1,5 @@
 package com.expedia.automation.listeners;
 
-import com.expedia.automation.constants.DataProvider;
 import com.expedia.automation.utils.RetryAnalyzer;
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;
@@ -13,15 +12,13 @@ public class AnnotationTransformer implements IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class aClass, Constructor constructor, Method testMethod) {
 
-        annotation.setEnabled(false);
+        annotation.setEnabled(true);
 
         if (testMethod.getName().equals("openSignInScreen"))
         {
             annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setEnabled(true);
             annotation.setPriority(1);
-            //annotation.setThreadPoolSize(3);
-            //annotation.setInvocationCount(3);
 
         }
 
@@ -36,8 +33,7 @@ public class AnnotationTransformer implements IAnnotationTransformer {
             annotation.setEnabled(true);
             annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setPriority(3);
-            annotation.setDataProviderClass(DataProvider.class);
-            annotation.setDataProvider("searchFligthInfoProfider");
+
         }
 
         else if (testMethod.getName().equals("flightSearchViaParameters"))

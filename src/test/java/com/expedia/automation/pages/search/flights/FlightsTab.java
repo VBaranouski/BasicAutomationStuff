@@ -10,9 +10,6 @@ public class FlightsTab extends BasePage {
 
     private static final Logger LOGGER = Logger.getLogger(FlightsTab.class);
 
-    String searchResult;
-
-
     // Navigation
 
     @FindBy (id = "tab-flight-tab-hp")
@@ -52,22 +49,14 @@ public class FlightsTab extends BasePage {
     //Search-results page
 
     @FindBy (className = "title-city-text")
-    private WebElement titleText;
-
-
-
-    public void setSearchResult(String searchResult) {
-        this.searchResult = searchResult;
-    }
-
-    public String getSearchResult() { return searchResult; }
+    public WebElement titleText;
 
 
     public FlightsTab (WebDriver driver){
         super(driver);
     }
 
-    public void searchFligthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults){
+    public void searchFlighthWithCar(String fromCity, String toCity, String dateDepart, String dateReturn, int adults, Boolean withCar){
         flight.click();
         flyingFrom.sendKeys(fromCity);
         flyingTo.sendKeys(toCity);
@@ -77,10 +66,11 @@ public class FlightsTab extends BasePage {
         departingDate.sendKeys(dateDepart);
         closeCalendar.click();
         adultDropdown.sendKeys(String.valueOf(adults));
-        addCarCheckBox.click();
+        if (withCar) {
+            addCarCheckBox.click();
+        }
         LOGGER.info("Criteria are selected");
         searchButton.submit();
-        setSearchResult(titleText.getText());
         
     }
 

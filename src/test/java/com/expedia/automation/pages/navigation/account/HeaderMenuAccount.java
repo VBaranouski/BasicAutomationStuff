@@ -14,28 +14,18 @@ public class HeaderMenuAccount extends BasePage {
     private WebElement singInLink;
 
     @FindBy (id = "signInheader")
-    private WebElement pageTitle;
+    public WebElement pageTitle;
 
 
     public HeaderMenuAccount(WebDriver driver){
         super(driver);
     }
 
-    private String signinPageTitle;
 
-    public String getSigninPageTitle() {
-        return signinPageTitle;
-    }
-
-    public void setSigninPageTitle(String signinPageTitle) {
-        this.signinPageTitle = signinPageTitle;
-    }
-
-
-    public void  openSignInScreen(WebDriver driver) {
+    public void  openSignInScreen() {
         accountMenu.click();
         singInLink.click();
-        setSigninPageTitle(pageTitle.getText());
+
     }
 
 }

@@ -7,13 +7,13 @@ public class Constants {
     public static final String EMAIL = "vladislav.baranovski1@gmail.com";
     public static final String PASSWORD = "barvadya18";
 
-    public static final String FLYINGFROM = "Minsk, Belarus (MSQ-Minsk Intl.)";
-    public static final String FLYINGTO = "New York, NY (NYC-All Airports)";
-    public static final String DATEDEPART = "09/25/2017";
-    public static final String DATERETURN = "09/30/2017";
+    public static final String FLYING_FROM = "Minsk, Belarus (MSQ-Minsk Intl.)";
+    public static final String FLYING_TO = "New York, NY (NYC-All Airports)";
+    public static final String DATE_DEPART = "09/25/2017";
+    public static final String DATE_RETURN = "09/30/2017";
 
-    public static final String USERNAME = "Hello, QA";
-    public static final String SIGNINPAGETITLE = "Sign in or select an option";
+    public static final String USER_NAME = "Hello, QA";
+    public static final String SIGNIN_PAGE_TITLE = "Sign in or select an option";
 
-    public static final String RESULTPAGETITLE = "Select your departure to";
+    public static final String RESULT_PAGE_TITLE = "Select your departure to";
 }

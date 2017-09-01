@@ -17,18 +17,9 @@ public class MyAccountPage extends BasePage {
         super(driver);
     }
 
-    private String userName;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     @FindBy (id = "header-account-menu-signed-in")
-    private WebElement userNameLink;
+    public WebElement userNameLink;
 
 
     @FindBy (id = "my_travel_details_div")
@@ -43,7 +34,6 @@ public class MyAccountPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.visibilityOf(userNameLink));
         userNameLink.click();
-        setUserName(userNameLink.getText());
     }
 
 
