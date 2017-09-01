@@ -17,14 +17,14 @@ public class AnnotationTransformer implements IAnnotationTransformer {
         if (testMethod.getName().equals("openSignInScreen"))
         {
             annotation.setRetryAnalyzer(RetryAnalyzer.class);
-            annotation.setEnabled(false);
+            annotation.setEnabled(true);
             annotation.setPriority(1);
 
         }
 
         else if (testMethod.getName().equals("loginTo"))
         {
-            annotation.setEnabled(false);
+            annotation.setEnabled(true);
             annotation.setPriority(2);
         }
 
@@ -33,8 +33,6 @@ public class AnnotationTransformer implements IAnnotationTransformer {
             annotation.setEnabled(true);
             annotation.setRetryAnalyzer(RetryAnalyzer.class);
             annotation.setPriority(3);
-            //annotation.setDataProviderClass(DataProviderManager.class);
-            //annotation.setDataProvider("searchFligthInfoProfider");
 
         }
 

@@ -39,13 +39,8 @@ public class SignInPage extends BasePage{
 
 
     public void signIn(String email, String pass){
-
             emailAdd.sendKeys(email);
             password.sendKeys(pass);
             subminButton.click();
-
-
     }
-
-
 }

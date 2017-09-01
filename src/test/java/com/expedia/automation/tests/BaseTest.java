@@ -1,17 +1,17 @@
 package com.expedia.automation.tests;
 
-import com.expedia.automation.driver.DriverTypes;
-import com.expedia.automation.driver.Singleton;
+import com.expedia.automation.driver.WebDriverFactory;
+import com.expedia.automation.driver.WebDriverTypes;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
 import com.expedia.automation.pages.signin.MyAccountPage;
 import com.expedia.automation.pages.signin.SignInPage;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
-import static com.expedia.automation.driver.Singleton.getInstance;
+import static com.expedia.automation.driver.WebDriverFactory.getInstance;
 
 public class BaseTest {
 
@@ -23,13 +23,13 @@ public class BaseTest {
     protected HomePage homePage;
 
 
-    @BeforeTest(groups = { "full","smoke"})
+    @BeforeMethod (groups = { "full","smoke"})
     public WebDriver createDriverForTests(){
-        driver = getInstance(driver, DriverTypes.DriverType.REMOTE_DRIVER);
+        driver = getInstance(driver, WebDriverTypes.DriverType.CHROME);
         return driver;
     }
 
-    @BeforeTest(groups = { "full","smoke"})
+    @BeforeMethod (groups = { "full","smoke"})
     public WebDriver createObjects(){
         homePage = new HomePage(driver);
         headerMenuAccount = new HeaderMenuAccount(driver);
@@ -39,9 +39,11 @@ public class BaseTest {
         return driver;
     }
 
-    @AfterTest(groups = { "full","smoke"})
-    public void closeBrowsers(){
-        Singleton.getInstance(driver, DriverTypes.DriverType.REMOTE_DRIVER).quit();
+    @AfterMethod (groups = { "full","smoke"})
+    public WebDriver closeBrowsers(){
+        WebDriverFactory.getInstance(driver, WebDriverTypes.DriverType.CHROME).quit();
+        driver = null;
+        return driver;
     }
 
 }
