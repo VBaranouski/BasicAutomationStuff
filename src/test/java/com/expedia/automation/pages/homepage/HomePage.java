@@ -13,8 +13,8 @@ public class HomePage extends BasePage{
     }
 
 
-    public WebDriver openExpedia(WebDriver driver) {
+    public void openExpedia (WebDriver driver) {
         driver.get(Constants.URL);
-        return driver;
+
     }
 }

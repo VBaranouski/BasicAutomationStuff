@@ -1,11 +1,7 @@
 package com.expedia.automation.tests;
 
 import com.expedia.automation.constants.Constants;
-import com.expedia.automation.pages.homepage.HomePage;
-import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
-import com.expedia.automation.pages.search.flights.FlightsTab;
-import com.expedia.automation.pages.signin.MyAccountPage;
-import com.expedia.automation.pages.signin.SignInPage;
+import com.expedia.automation.constants.DataProviderManager;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -14,46 +10,35 @@ import org.testng.annotations.Test;
 public class Testing extends BaseTest {
 
 
-
     @Test (groups = { "full" })
     public void openSignInScreen(){
-        HomePage homePage = new HomePage(driver);
         homePage.openExpedia(driver);
-        HeaderMenuAccount signIn = new HeaderMenuAccount(driver);
-        signIn.openSignInScreen(driver);
-        Assert.assertEquals(signIn.getSigninPageTitle(), Constants.SIGNINPAGETITLE);
+        headerMenuAccount.openSignInScreen();
+        Assert.assertEquals(headerMenuAccount.pageTitle.getText(), Constants.SIGNIN_PAGE_TITLE);
     }
 
 
     @Test (priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
-        SignInPage sign = new SignInPage(driver);
-        sign.signIn(Constants.EMAIL, Constants.PASSWORD);
-        MyAccountPage myAcc = new MyAccountPage(driver);
-        myAcc.openMyAccountPage();
-        Assert.assertEquals(myAcc.getUserName(), Constants.USERNAME);
+        signInPage.signIn(Constants.EMAIL, Constants.PASSWORD);
+        myAccountPage.openMyAccountPage();
+        Assert.assertEquals(myAccountPage.userNameLink.getText(), Constants.USER_NAME);
     }
 
-
-
-    @Test (groups = { "smoke","full" })
-    public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String city) {
-        HomePage homePage = new HomePage(driver);
+    @Test (groups = { "smoke","full" }, dataProvider = "searchFligthInfoProfider", dataProviderClass = DataProviderManager.class)
+    public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String cityDestination) {
         homePage.openExpedia(driver);
-        FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(flightFrom, flightDest, dateDepart, dateReturn, adults);
-        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " " + city);
+        flightsTab.searchFligthWithCar(flightFrom, flightDest, dateDepart, dateReturn, adults, false);
+        Assert.assertEquals(flightsTab.titleText.getText(), Constants.RESULT_PAGE_TITLE + " " + cityDestination);
     }
 
 
     @Parameters({"adults", "city"})
     @Test (groups = { "full" })
-    public void flightSearchViaParameters(int adults, String city){
-        HomePage homePage = new HomePage(driver);
+    public void flightSearchViaParameters(int adults, String cityDestination){
         homePage.openExpedia(driver);
-        FlightsTab flights = new FlightsTab(driver);
-        flights.searchFligthWithCar(Constants.FLYINGFROM, Constants.FLYINGTO, Constants.DATEDEPART, Constants.DATERETURN, adults);
-        Assert.assertEquals(flights.getSearchResult(), Constants.RESULTPAGETITLE + " " + city);
+        flightsTab.searchFligthWithCar(Constants.FLYING_FROM, Constants.FLYING_TO, Constants.DATE_DEPART, Constants.DATE_RETURN, adults, true);
+        Assert.assertEquals(flightsTab.titleText.getText(), Constants.RESULT_PAGE_TITLE + " " + cityDestination);
     }
 
 }
