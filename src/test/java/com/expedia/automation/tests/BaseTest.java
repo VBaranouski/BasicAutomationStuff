@@ -1,7 +1,7 @@
 package com.expedia.automation.tests;
 
-import com.expedia.automation.driver.WebDriverFactory;
-import com.expedia.automation.driver.WebDriverTypes;
+import com.expedia.automation.driver.DriverFactory;
+import com.expedia.automation.driver.DriverTypes;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import static com.expedia.automation.driver.WebDriverFactory.getInstance;
+import static com.expedia.automation.driver.DriverFactory.getInstance;
 
 public class BaseTest {
 
@@ -25,7 +25,7 @@ public class BaseTest {
 
     @BeforeMethod (groups = { "full","smoke"})
     public WebDriver createDriverForTests(){
-        driver = getInstance(driver, WebDriverTypes.DriverType.CHROME);
+        driver = getInstance(driver, DriverTypes.DriverType.CHROME);
         return driver;
     }
 
@@ -41,9 +41,21 @@ public class BaseTest {
 
     @AfterMethod (groups = { "full","smoke"})
     public WebDriver closeBrowsers(){
-        WebDriverFactory.getInstance(driver, WebDriverTypes.DriverType.CHROME).quit();
+        DriverFactory.getInstance(driver, DriverTypes.DriverType.CHROME).quit();
         driver = null;
         return driver;
     }
+
+
+    public static void showAnnotation(){
+        Testing ob = new Testing();
+        try {
+            ExpediaCheck m = ob.getClass().getMethod("openSignInScreen").getAnnotation(ExpediaCheck.class);
+            System.out.println(m.str());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

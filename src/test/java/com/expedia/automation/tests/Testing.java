@@ -6,10 +6,20 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+
+@Retention(RetentionPolicy.RUNTIME)
+@interface ExpediaCheck{
+    String str() default "Cool";
+}
+
 
 public class Testing extends BaseTest {
 
 
+    @ExpediaCheck (str = "first annotation")
     @Test (groups = { "full" })
     public void openSignInScreen(){
         homePage.openExpedia(driver);
@@ -18,7 +28,7 @@ public class Testing extends BaseTest {
     }
 
 
-    @Test (priority = 1, dependsOnMethods = "openSignInScreen", groups = { "full" })
+    @Test (priority = 2, dependsOnMethods = "openSignInScreen", groups = { "full" })
     public void loginTo(){
         homePage.openExpedia(driver);
         headerMenuAccount.openSignInScreen();
@@ -30,6 +40,7 @@ public class Testing extends BaseTest {
 
     @Test (groups = { "smoke","full" }, dataProvider = "searchFligthInfoProfider", dataProviderClass = DataProviderManager.class)
     public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String cityDestination) {
+        //BaseTest.showAnnotation();
         homePage.openExpedia(driver);
         flightsTab.searchFlighthWithCar(flightFrom, flightDest, dateDepart, dateReturn, adults, false);
         Assert.assertEquals(flightsTab.titleText.getText(), Constants.RESULT_PAGE_TITLE + " " + cityDestination);

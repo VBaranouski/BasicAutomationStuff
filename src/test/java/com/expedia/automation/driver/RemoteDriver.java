@@ -7,7 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RemoteDriver extends WebDriverFactory {
+public class RemoteDriver extends DriverFactory {
 
     private RemoteDriver(WebDriver driver) {
         super(driver);

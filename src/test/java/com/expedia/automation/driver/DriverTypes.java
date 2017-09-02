@@ -1,6 +1,6 @@
 package com.expedia.automation.driver;
 
-public class WebDriverTypes {
+public class DriverTypes {
 
     public enum DriverType {
         CHROME,

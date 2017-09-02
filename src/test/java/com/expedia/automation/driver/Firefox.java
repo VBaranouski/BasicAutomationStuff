@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
-public class Firefox extends WebDriverFactory{
+public class Firefox extends DriverFactory {
 
     private static final String FIREFOX_DRIVER = "webdriver.gecko.driver";
     private static final String FIREFOX_DRIVER_PATH = "/Users/Vlad/Documents/Automation/geckodriver";

@@ -8,12 +8,12 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        System.out.println(iTestResult.getName() + ": has started");
+        System.out.println(iTestResult.getClass() + ": '" + iTestResult.getName() + "' test has started");
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println(iTestResult.getName() + ": passed");
+        System.out.println(iTestResult.getClass() + ": '" + iTestResult.getName() + "' test is PASSED");
     }
 
     @Override

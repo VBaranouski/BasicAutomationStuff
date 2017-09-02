@@ -42,5 +42,7 @@ public class SignInPage extends BasePage{
             emailAdd.sendKeys(email);
             password.sendKeys(pass);
             subminButton.click();
+            LOGGER.info("Login form submitted");
+
     }
 }
