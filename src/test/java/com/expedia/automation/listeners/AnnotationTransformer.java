@@ -17,28 +17,27 @@ public class AnnotationTransformer implements IAnnotationTransformer {
 
         if (testMethod.getName().equals("openSignInScreen"))
         {
-            annotation.setEnabled(true);
-            //annotation.setPriority(1);
+            annotation.setEnabled(false);
 
         }
 
         else if (testMethod.getName().equals("loginTo"))
         {
-            annotation.setEnabled(true);
-            //annotation.setPriority(2);
+            annotation.setEnabled(false);
+
         }
 
         else if (testMethod.getName().equals("flightSearchViaDataProvider"))
         {
             annotation.setEnabled(true);
-            //annotation.setPriority(3);
+            annotation.setPriority(1);
 
         }
 
         else if (testMethod.getName().equals("flightSearchViaParameters"))
         {
-            annotation.setEnabled(true);
-            //annotation.setPriority(4);
+            annotation.setEnabled(false);
+
         }
     }
 }

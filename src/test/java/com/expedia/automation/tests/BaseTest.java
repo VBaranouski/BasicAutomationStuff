@@ -46,4 +46,16 @@ public class BaseTest {
         return driver;
     }
 
+
+    public static void showAnnotation(){
+        Testing ob = new Testing();
+        try {
+            ExpediaCheck m = ob.getClass().getMethod("openSignInScreen").getAnnotation(ExpediaCheck.class);
+            System.out.println(m.str());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
