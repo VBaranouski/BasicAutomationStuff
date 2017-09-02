@@ -2,15 +2,15 @@ package com.expedia.automation.driver;
 
 import org.openqa.selenium.WebDriver;
 
-public class WebDriverFactory {
+public class DriverFactory {
 
     protected static WebDriver driver;
 
-    protected WebDriverFactory(WebDriver driver) {
+    protected DriverFactory(WebDriver driver) {
         this.driver = driver;
     }
 
-    public static WebDriver getInstance(WebDriver driver, WebDriverTypes.DriverType type){
+    public static synchronized WebDriver getInstance(WebDriver driver, DriverTypes.DriverType type){
         if (driver==null){
             switch (type) {
                 case CHROME:
