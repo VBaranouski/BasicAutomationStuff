@@ -47,7 +47,7 @@ public class BaseTest {
     }
 
 
-    public static void showAnnotation(){
+    public static void showCustomAnnotation(){
         Testing ob = new Testing();
         try {
             ExpediaCheck m = ob.getClass().getMethod("openSignInScreen").getAnnotation(ExpediaCheck.class);

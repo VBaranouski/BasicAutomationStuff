@@ -31,6 +31,8 @@ public class AnnotationTransformer implements IAnnotationTransformer {
         {
             annotation.setEnabled(true);
             annotation.setPriority(1);
+            //annotation.setInvocationCount(2);
+            //annotation.setThreadPoolSize(2);
 
         }
 
