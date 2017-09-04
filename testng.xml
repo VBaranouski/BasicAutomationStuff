@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite_One" parallel="tests" thread-count="2">
+<suite name="Suite_One" parallel="none" thread-count="1">
 
     <parameter name="city" value="New York"/>
     <parameter name="adults"  value="2"/>
@@ -11,7 +11,7 @@
         <listener class-name="com.expedia.automation.listeners.AnnotationTransformer" />
     </listeners>
 
-<test name="ExpediaFull" >
+<test name="ExpediaFull" preserve-order = "true">
         <groups>
             <run>
                 <include name="full"/>
@@ -19,7 +19,8 @@
         </groups>
 
         <classes>
-            <class name="com.expedia.automation.tests.Testing" />
+            <class name="com.expedia.automation.tests.myaccount.MyAccountTests" />
+            <class name="com.expedia.automation.tests.flights.FlightsTests" />
 
         </classes>
     </test>

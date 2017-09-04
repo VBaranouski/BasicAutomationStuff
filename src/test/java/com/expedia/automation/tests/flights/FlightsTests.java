@@ -1,7 +1,8 @@
-package com.expedia.automation.tests;
+package com.expedia.automation.tests.flights;
 
 import com.expedia.automation.constants.Constants;
 import com.expedia.automation.constants.DataProviderManager;
+import com.expedia.automation.tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -12,40 +13,29 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 @interface ExpediaCheck{
-    String str() default "Cool";
+    String str() default "Running Expedia tests";
 }
 
+public class FlightsTests extends BaseTest {
 
-public class Testing extends BaseTest {
-
-
-    @ExpediaCheck (str = "first annotation")
-    @Test (groups = { "full" })
-    public void openSignInScreen(){
-        homePage.openExpedia(driver);
-        headerMenuAccount.openSignInScreen();
-        Assert.assertEquals(headerMenuAccount.pageTitle.getText(), Constants.SIGNIN_PAGE_TITLE);
+    public static void showCustomAnnotation(){
+        BaseTest ob = new BaseTest();
+        try {
+            ExpediaCheck m = ob.getClass().getMethod("flightSearchViaParameters").getAnnotation(ExpediaCheck.class);
+            System.out.println(m.str());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    @Test (priority = 2, dependsOnMethods = "openSignInScreen", groups = { "full" })
-    public void loginTo(){
-        homePage.openExpedia(driver);
-        headerMenuAccount.openSignInScreen();
-        Assert.assertEquals(headerMenuAccount.pageTitle.getText(), Constants.SIGNIN_PAGE_TITLE);
-        signInPage.signIn(Constants.EMAIL, Constants.PASSWORD);
-        myAccountPage.openMyAccountPage();
-        Assert.assertEquals(myAccountPage.userNameLink.getText(), Constants.USER_NAME);
-    }
-
-    @Test (groups = { "smoke","full" }, dataProvider = "searchFligthInfoProfider", dataProviderClass = DataProviderManager.class)
+    @ExpediaCheck (str = "Desktop")
+    @Test (groups = { "smoke","full" }, dataProvider = "searchFlightInfoProvider", dataProviderClass = DataProviderManager.class)
     public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String cityDestination) {
-        //BaseTest.showAnnotation();
         homePage.openExpedia(driver);
         flightsTab.searchFlighthWithCar(flightFrom, flightDest, dateDepart, dateReturn, adults, false);
         Assert.assertEquals(flightsTab.titleText.getText(), Constants.RESULT_PAGE_TITLE + " " + cityDestination);
     }
-
 
     @Parameters({"adults", "city"})
     @Test (groups = { "full" })

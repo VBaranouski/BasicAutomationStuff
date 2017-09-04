@@ -12,25 +12,16 @@ public class AnnotationTransformer implements IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class aClass, Constructor constructor, Method testMethod) {
 
-        annotation.setEnabled(true);
+        //annotation.setEnabled(true);
         annotation.setRetryAnalyzer(RetryAnalyzer.class);
 
-        if (testMethod.getName().equals("openSignInScreen"))
+
+        if (testMethod.getName().equals("flightSearchViaDataProvider"))
         {
             annotation.setEnabled(false);
-
-        }
-
-        else if (testMethod.getName().equals("loginTo"))
-        {
-            annotation.setEnabled(false);
-
-        }
-
-        else if (testMethod.getName().equals("flightSearchViaDataProvider"))
-        {
-            annotation.setEnabled(true);
             annotation.setPriority(1);
+            //annotation.setInvocationCount(2);
+            //annotation.setThreadPoolSize(2);
 
         }
 

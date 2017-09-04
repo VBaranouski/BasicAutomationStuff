@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MyAccountPage extends BasePage {
@@ -21,28 +19,105 @@ public class MyAccountPage extends BasePage {
     @FindBy (id = "header-account-menu-signed-in")
     public WebElement userNameLink;
 
+    @FindBy (id = "account-myaccount")
+    public  WebElement myAccountLink;
 
     @FindBy (id = "my_travel_details_div")
-    private WebElement myTravelDetails;
+    public WebElement myTravelDetails;
+
 
     @FindBy (id = "ff")
-    private WebElement frequentFlyer;
+    public WebElement frequentFlyer;
+
+    @FindBy (xpath = "//*[@id=\"ff\"]/article/div/span")
+    public WebElement frequentFlyerTitle;
+
+    @FindBy (name = "userMembershipName")
+    public WebElement programName;
+
+    @FindBy (name = "membershipProgramNumber")
+    public WebElement programNumber;
+
+    @FindBy (id = "membership_button_0")
+    public WebElement programSave;
 
 
+    @FindBy (id = "pi")
+    public WebElement personalInfo;
+
+    @FindBy (id = "radio-male")
+    private WebElement maleRadioButton;
+
+    @FindBy (id = "radio-female")
+    private WebElement femaleRadioButton;
+
+    @FindBy (id = "name_button")
+    private WebElement savePersonalInfo;
+
+    @FindBy (xpath = "//*[@id=\"pi\"]/article/div/span")
+    public WebElement personalInfoTitle;
+
+
+    @FindBy (id = "flightPref")
+    public WebElement flightPreferences;
+
+    @FindBy (id = "homeAirport")
+    public WebElement homeAirportField;
+
+    @FindBy (xpath = "//*[@id=\"flightPref\"]/article/div/span")
+    public WebElement flightPrefTitle;
+
+    @FindBy (id = "seatingPreference")
+    private WebElement seatingPrefDropdown;
+
+    @FindBy (id = "specialRequest")
+    private WebElement specialRequestDropdown;
+
+    @FindBy (id = "flight_preferences_button")
+    public WebElement saveFligthPrefButton;
+
+
+    @FindBy (id = "passport")
+    public WebElement passports;
+
+    @FindBy (id = "tsa")
+    public WebElement TSAinfo;
+
+    WebDriverWait wait = new WebDriverWait(driver, 50);
 
     public void openMyAccountPage(){
-        WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.visibilityOf(userNameLink));
         userNameLink.click();
+        myAccountLink.click();
+    }
+
+    public void frequentFlyerCheck(String prName, String prNumber){
+        wait.until(ExpectedConditions.visibilityOf(frequentFlyer));
+        frequentFlyer.click();
+        programName.clear();
+        programName.sendKeys(prName);
+        programNumber.clear();
+        programNumber.sendKeys(prNumber);
+        programSave.click();
+    }
+
+    public void personalInfo(){
+        wait.until(ExpectedConditions.visibilityOf(personalInfo));
+        personalInfo.click();
+        maleRadioButton.click();
+        savePersonalInfo.click();
     }
 
 
-    public void travelDetail(){
-        WebDriverWait wait = new WebDriverWait(driver, 50);
-        List<WebElement> listEl = new ArrayList<WebElement>();
-        listEl.add(frequentFlyer);
-        wait.until(ExpectedConditions.visibilityOfAllElements(listEl));
-
+    public void flightPreferences(String homeAirport){
+        wait.until(ExpectedConditions.visibilityOf(flightPreferences));
+        flightPreferences.click();
+        homeAirportField.clear();
+        homeAirportField.sendKeys(homeAirport);
+        Select seatingMenu = new Select(seatingPrefDropdown);
+        seatingMenu.selectByValue("AISLE");
+        Select specRequestMenu = new Select(specialRequestDropdown);
+        specRequestMenu.selectByValue("HelpLang");
+        saveFligthPrefButton.click();
     }
-
 }
