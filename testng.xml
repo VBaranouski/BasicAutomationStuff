@@ -19,7 +19,8 @@
         </groups>
 
         <classes>
-            <class name="com.expedia.automation.tests.Testing" />
+            <class name="com.expedia.automation.tests.myaccount.MyAccountTests" />
+            <class name="com.expedia.automation.tests.flights.FlightsTests" />
 
         </classes>
     </test>

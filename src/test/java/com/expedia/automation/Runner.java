@@ -1,5 +1,6 @@
 package com.expedia.automation;
 
+import com.expedia.automation.tests.flights.FlightsTests;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -43,7 +44,7 @@ public class Runner {
     }
         public void runTestNGTestEasierWay() {
         TestNG testng = new TestNG();
-        testng.setTestClasses(new Class[] {com.expedia.automation.tests.Testing.class});
+        testng.setTestClasses(new Class[] {FlightsTests.class});
         testng.run();
 
 

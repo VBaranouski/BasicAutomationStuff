@@ -13,7 +13,15 @@ public class Constants {
     public static final String DATE_RETURN = "09/30/2017";
 
     public static final String USER_NAME = "Hello, QA";
-    public static final String SIGNIN_PAGE_TITLE = "Sign in or select an option";
 
     public static final String RESULT_PAGE_TITLE = "Select your departure to";
+
+    public static final String FREQUENT_FLYER_TITLE = "Frequent Flyer and Membership";
+    public static final String PROGRAM_NAME = "Canadian Pacific Club";
+    public static final String PROGRAM_NUMBER = "19061898";
+
+    public static final String FLIGHT_PREFERENCES_TITLE = "Flight Preferences";
+    public static final String PERSONAL_INFO_TITLE = "Personal Info";
 }
+
+
