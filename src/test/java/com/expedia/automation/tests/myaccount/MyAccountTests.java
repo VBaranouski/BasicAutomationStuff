@@ -39,7 +39,6 @@ public class MyAccountTests extends BaseTest {
         Assert.assertTrue(myAccountPage.personalInfo.isDisplayed());
         Assert.assertEquals(myAccountPage.personalInfoTitle.getText(), Constants.PERSONAL_INFO_TITLE);
         myAccountPage.personalInfo();
-
     }
 
     @Test(priority = 3, enabled = false, groups = {"full"})
@@ -48,7 +47,5 @@ public class MyAccountTests extends BaseTest {
         Assert.assertTrue(myAccountPage.flightPrefTitle.isDisplayed());
         Assert.assertEquals(myAccountPage.flightPrefTitle.getText(), Constants.FLIGHT_PREFERENCES_TITLE);
         myAccountPage.flightPreferences(Constants.FLYING_FROM);
-
     }
-
 }
