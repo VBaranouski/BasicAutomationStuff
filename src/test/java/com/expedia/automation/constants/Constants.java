@@ -21,6 +21,8 @@ public class Constants {
     public static final String PROGRAM_NUMBER = "19061898";
 
     public static final String FLIGHT_PREFERENCES_TITLE = "Flight Preferences";
+    public static final String HOME_AIRPORT = "Minsk, Belarus";
+
     public static final String PERSONAL_INFO_TITLE = "Personal Info";
 }
 

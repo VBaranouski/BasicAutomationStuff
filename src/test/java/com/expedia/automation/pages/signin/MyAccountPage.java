@@ -64,6 +64,9 @@ public class MyAccountPage extends BasePage {
     @FindBy (id = "homeAirport")
     public WebElement homeAirportField;
 
+    @FindBy (xpath = "//*[@id=\"aria-option-0\"]")
+    public WebElement homeAirportPopup;
+
     @FindBy (xpath = "//*[@id=\"flightPref\"]/article/div/span")
     public WebElement flightPrefTitle;
 
@@ -114,6 +117,8 @@ public class MyAccountPage extends BasePage {
         flightPreferences.click();
         homeAirportField.clear();
         homeAirportField.sendKeys(homeAirport);
+        wait.until(ExpectedConditions.elementToBeClickable(homeAirportPopup));
+        homeAirportPopup.click();
         Select seatingMenu = new Select(seatingPrefDropdown);
         seatingMenu.selectByValue("AISLE");
         Select specRequestMenu = new Select(specialRequestDropdown);

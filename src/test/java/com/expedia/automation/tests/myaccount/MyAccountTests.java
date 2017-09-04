@@ -29,11 +29,9 @@ public class MyAccountTests extends BaseTest {
         Assert.assertTrue(myAccountPage.frequentFlyerTitle.isDisplayed());
         myAccountPage.frequentFlyerCheck(Constants.PROGRAM_NAME, Constants.PROGRAM_NUMBER);
         Assert.assertEquals(myAccountPage.frequentFlyerTitle.getText(), Constants.FREQUENT_FLYER_TITLE);
-
     }
 
-
-    @Test(priority = 3, enabled = true, groups = {"full"})
+    @Test(priority = 3, enabled = false, groups = {"full"})
     public void travelDetailsPersonalInfoCheck(){
         myAccountPage.openMyAccountPage();
         Assert.assertTrue(myAccountPage.personalInfo.isDisplayed());
@@ -41,11 +39,11 @@ public class MyAccountTests extends BaseTest {
         myAccountPage.personalInfo();
     }
 
-    @Test(priority = 3, enabled = false, groups = {"full"})
+    @Test(priority = 3, enabled = true, groups = {"full"})
     public void travelDetailsFlightPrefCheck(){
         myAccountPage.openMyAccountPage();
         Assert.assertTrue(myAccountPage.flightPrefTitle.isDisplayed());
         Assert.assertEquals(myAccountPage.flightPrefTitle.getText(), Constants.FLIGHT_PREFERENCES_TITLE);
-        myAccountPage.flightPreferences(Constants.FLYING_FROM);
+        myAccountPage.flightPreferences(Constants.HOME_AIRPORT);
     }
 }
