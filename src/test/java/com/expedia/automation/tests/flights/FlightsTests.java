@@ -7,29 +7,11 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
-
-@Retention(RetentionPolicy.RUNTIME)
-@interface ExpediaCheck{
-    String str() default "Running Expedia tests";
-}
 
 public class FlightsTests extends BaseTest {
 
-    public static void showCustomAnnotation(){
-        BaseTest ob = new BaseTest();
-        try {
-            ExpediaCheck m = ob.getClass().getMethod("flightSearchViaParameters").getAnnotation(ExpediaCheck.class);
-            System.out.println(m.str());
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-    }
 
-
-    @ExpediaCheck (str = "Desktop")
     @Test (groups = { "smoke","full" }, dataProvider = "searchFlightInfoProvider", dataProviderClass = DataProviderManager.class)
     public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String cityDestination) {
         homePage.openExpedia(driver);
@@ -44,5 +26,8 @@ public class FlightsTests extends BaseTest {
         flightsTab.searchFlighthWithCar(Constants.FLYING_FROM, Constants.FLYING_TO, Constants.DATE_DEPART, Constants.DATE_RETURN, adults, true);
         Assert.assertEquals(flightsTab.titleText.getText(), Constants.RESULT_PAGE_TITLE + " " + cityDestination);
     }
+
+
+
 
 }
