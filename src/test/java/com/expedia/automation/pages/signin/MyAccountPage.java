@@ -86,6 +86,7 @@ public class MyAccountPage extends BasePage {
     @FindBy (id = "tsa")
     public WebElement TSAinfo;
 
+
     WebDriverWait wait = new WebDriverWait(driver, 50);
 
     public void openMyAccountPage(){

@@ -39,7 +39,7 @@ public class MyAccountTests extends BaseTest {
         myAccountPage.personalInfo();
     }
 
-    @Test(priority = 3, enabled = true, groups = {"full"})
+    @Test(priority = 4, enabled = true, groups = {"full"})
     public void travelDetailsFlightPrefCheck(){
         myAccountPage.openMyAccountPage();
         Assert.assertTrue(myAccountPage.flightPrefTitle.isDisplayed());
