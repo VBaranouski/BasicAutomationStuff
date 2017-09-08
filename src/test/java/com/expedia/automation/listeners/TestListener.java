@@ -35,6 +35,5 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-        System.out.println("All done");
     }
 }
