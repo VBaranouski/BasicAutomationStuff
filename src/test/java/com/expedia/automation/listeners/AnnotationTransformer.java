@@ -13,13 +13,11 @@ public class AnnotationTransformer implements IAnnotationTransformer {
     public void transform(ITestAnnotation annotation, Class aClass, Constructor constructor, Method testMethod) {
 
         annotation.setRetryAnalyzer(RetryAnalyzer.class);
+       // annotation.setEnabled(false);
 
         if (testMethod.getName().equals("flightSearchViaDataProvider"))
         {
             annotation.setEnabled(false);
-            annotation.setPriority(1);
-            //annotation.setInvocationCount(2);
-            //annotation.setThreadPoolSize(2);
 
         }
 
