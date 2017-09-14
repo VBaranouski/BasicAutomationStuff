@@ -1,27 +1,13 @@
-package web.player.tests;
+package web.player.tests.gui;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import web.player.constants.ContentTypes;
-import web.player.controls.Elements;
+import web.player.core.Elements;
+import web.player.tests.WebPlayerBaseTest;
 
-public class WebPlayerTests extends WebPlayerBaseTest {
-
-    @Test(enabled = false)
-    public void openTestRigWithClip() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
-    }
-
-    @Test(enabled = false)
-    public void openTestRigWithFullEpisode() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-    }
-
-    @Test(enabled = false)
-    public void openTestRigWithLive() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.LIVE);
-    }
+public class GuiTests extends WebPlayerBaseTest {
 
 
     @Test(enabled = false)
@@ -50,6 +36,18 @@ public class WebPlayerTests extends WebPlayerBaseTest {
 
     @Test(enabled = false)
     public void fullScreenTest() {
+        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
+        wait.until(ExpectedConditions.visibilityOf(Elements.progressBar));
+        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));
+        playerAction.openFullScreen();
+        wait.until(ExpectedConditions.visibilityOf(Elements.titleMetadata));
+        Assert.assertTrue(Elements.titleMetadata.isDisplayed());
+        playerAction.exitFullScreen();
+        Assert.assertFalse(Elements.titleMetadata.isDisplayed());
+    }
+
+    @Test(enabled = false)
+    public void fullScreenTestS() {
         baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
         wait.until(ExpectedConditions.visibilityOf(Elements.progressBar));
         wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));

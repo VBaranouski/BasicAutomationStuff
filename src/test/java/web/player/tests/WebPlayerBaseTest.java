@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import web.player.controls.PlayerActions;
-import web.player.controls.BaseWebPage;
-import web.player.controls.Elements;
+import web.player.core.PlayerActions;
+import web.player.core.BaseWebPage;
+import web.player.core.Elements;
 
 import static com.expedia.automation.driver.DriverFactory.getInstance;
 

@@ -1,8 +1,10 @@
-package web.player.controls;
+package web.player.core;
 
 import org.openqa.selenium.WebDriver;
 
 public class PlayerActions extends BaseWebPage {
+
+    // GUI
 
     public PlayerActions(WebDriver driver) {
         super(driver);
@@ -30,6 +32,12 @@ public class PlayerActions extends BaseWebPage {
         Elements.volumeIcon.click();
     }
 
+    //AD break
+
+    public void waitForAdBreakfinish(){ }
+
+    // Closed Captions
+
     public void openSettingsMenu(){ Elements.settingsIcon.click(); }
 
     public void hideSettingsMenu(){Elements.settingsIcon.click(); }
@@ -38,9 +46,17 @@ public class PlayerActions extends BaseWebPage {
 
     public void hideClosedCaptions(){Elements.closedCaptionsIcon.click();}
 
-    public void waitForAdBreakfinish(){ }
+    public void selectSmallFontSize(){
+        Elements.ccFontSize.click();
+        Elements.ccSmallFontSize.click();
+        Elements.settingsFontSizeBackButton.click();
+    }
 
-    public void showPlayersGui(){ Elements.playersFrame.submit(); }
+    public void selectRedColor(){
+        Elements.ccFontColor.click();
+        Elements.ccFontColorRed.click();
+        Elements.settingsFontColorBackButton.click();
+    }
 
 
 

@@ -4,7 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import web.player.constants.ContentTypes;
-import web.player.controls.Elements;
+import web.player.core.Elements;
 import web.player.tests.WebPlayerBaseTest;
 
 public class ShareModuleTests extends WebPlayerBaseTest {

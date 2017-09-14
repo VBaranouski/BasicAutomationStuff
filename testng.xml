@@ -27,8 +27,8 @@
             </run>
         </groups>
         <classes>
-            <class name="web.player.tests.WebPlayerTests" />
-            <class name="web.player.tests.closedcaptions.ClosedCaptioning" />
+            <class name="web.player.tests.closed.captions.ClosedCaptioning" />
+            <class name="web.player.tests.gui.GuiTests" />
             <class name="web.player.tests.share.ShareModuleTests" />
         </classes>
     </test>
