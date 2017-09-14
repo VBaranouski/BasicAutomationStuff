@@ -1,4 +1,4 @@
-package web.player.controls;
+package web.player.core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

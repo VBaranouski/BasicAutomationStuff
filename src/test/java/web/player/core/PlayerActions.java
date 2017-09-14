@@ -1,4 +1,4 @@
-package web.player.controls;
+package web.player.core;
 
 import org.openqa.selenium.WebDriver;
 
@@ -32,11 +32,9 @@ public class PlayerActions extends BaseWebPage {
         Elements.volumeIcon.click();
     }
 
-
     //AD break
 
     public void waitForAdBreakfinish(){ }
-
 
     // Closed Captions
 
@@ -50,7 +48,7 @@ public class PlayerActions extends BaseWebPage {
 
     public void selectSmallFontSize(){
         Elements.ccFontSize.click();
-        Elements.ccSmalFontSize.click();
+        Elements.ccSmallFontSize.click();
         Elements.settingsFontSizeBackButton.click();
     }
 

@@ -1,4 +1,4 @@
-package web.player.controls;
+package web.player.core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,7 +80,7 @@ public class Elements extends BaseWebPage {
     public static WebElement ccFontSize;
 
     @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-font-selectors > div:nth-child(1)")
-    public static WebElement ccSmalFontSize;
+    public static WebElement ccSmallFontSize;
 
     @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(3) > div.edge-gui-cc-expander.edge-gui-cc-expander-color")
     public static WebElement ccFontColor;

@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
-import web.player.controls.Elements;
+import web.player.core.Elements;
 import web.player.tests.WebPlayerBaseTest;
 
 public class ClosedCaptioning extends WebPlayerBaseTest {

@@ -5,6 +5,7 @@ import web.player.constants.ContentTypes;
 import web.player.tests.WebPlayerBaseTest;
 
 public class ContentTypesTests extends WebPlayerBaseTest {
+
     @Test(enabled = false)
     public void openTestRigWithClip() {
         baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
@@ -14,7 +15,6 @@ public class ContentTypesTests extends WebPlayerBaseTest {
     public void openTestRigWithFullEpisode() { baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE); }
 
     @Test(enabled = false)
-    public void openTestRigWithLive() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.LIVE);
-    }
+    public void openTestRigWithLive() { baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.LIVE); }
+
 }
