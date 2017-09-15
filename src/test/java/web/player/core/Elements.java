@@ -50,12 +50,10 @@ public class Elements extends BaseWebPage {
     @FindBy (className = "edge-gui-background")
     public static WebElement playersFrame;
 
-
     //ads:
 
     @FindBy (className = " edge-gui-ad-metadata")
     public static WebElement adGuiMetadata;
-
 
     //Closed Captions:
 
