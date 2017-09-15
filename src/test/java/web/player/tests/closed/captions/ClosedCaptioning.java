@@ -62,6 +62,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
         playerAction.openSettingsMenu();
         Assert.assertTrue(Elements.settingsPopup.isDisplayed());
         playerAction.hideSettingsMenu();
+        Assert.assertFalse(Elements.settingsPopup.isDisplayed());
     }
 
 
@@ -75,5 +76,6 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
         Assert.assertEquals(Elements.firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_SMALL_FONT_SIZE);
         playerAction.selectRedColor();
         Assert.assertEquals(Elements.firstRowCC.getCssValue("color"), WebPlayerConstants.CC_RED_COLOR);
+
     }
 }

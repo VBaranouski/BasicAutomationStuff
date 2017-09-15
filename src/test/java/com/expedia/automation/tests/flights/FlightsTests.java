@@ -16,7 +16,7 @@ public class FlightsTests extends BaseTest {
     public void flightSearchViaDataProvider(String flightFrom, String flightDest, String dateDepart, String dateReturn, int adults, String cityDestination) {
         homePage.openExpedia(driver);
         flightsTab.searchFlighthWithCar(flightFrom, flightDest, dateDepart, dateReturn, adults, false);
-        // add a assertion msg if test will fai
+        // add a assertion msg if test will fail
         Assert.assertEquals(flightsTab.titleText.getText(), Constants.RESULT_PAGE_TITLE + " " + cityDestination);
     }
 

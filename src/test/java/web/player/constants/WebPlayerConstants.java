@@ -6,7 +6,8 @@ public class WebPlayerConstants {
     public static final String LIVE = "http://bit.ly/2tikQ56";
 
     public static final String CC_DEFAULT_COLOR = "rgba(255, 255, 255, 1)";
-    public static final String CC_DEFAULT_FONT_FAMILY = "\"Deja Vu Sans Mono\"" + ", "+ "\"Lucida Console\"" + ", " + "Monaco" + ", " + "Consolas" + ", " + "\"PT Mono\"" + ", " + "monospace";
+    public static final String CC_DEFAULT_FONT_FAMILY = "\"Deja Vu Sans Mono\"" + ", "+ "\"Lucida Console\"" + ", " + "Monaco" + ", " + "Consolas" + ", " +
+                                                        "\"PT Mono\"" + ", " + "monospace";
     public static final String CC_DEFAULT_FONT_SIZE = "16.8px";
     public static final String CC_DEFAULT_BACKGROUND_COLOR = "rgba(0, 0, 0, 0.5)";
 

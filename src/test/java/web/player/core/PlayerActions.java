@@ -45,7 +45,6 @@ public class PlayerActions extends BaseWebPage {
     // =)
 
 
-
     public void unmutePlayback() {
         Elements.volumeIcon.click();
     }
