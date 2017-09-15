@@ -8,41 +8,38 @@ import org.testng.log4testng.Logger;
 
 public class SignInPage extends BasePage{
 
+    // static private constants are on the top
+    private static final Logger LOGGER = Logger.getLogger(SignInPage.class);
 
     @FindBy (id = "signin-loginid")
-    private WebElement emailAdd;
+    public WebElement emailAdd;
 
     @FindBy (id = "signin-password")
-    private WebElement password;
+    public WebElement password;
 
     @FindBy (id = "submitButton")
     private WebElement subminButton;
 
     @FindBy (className = "modal-body")
-    private WebElement modalPopUp;
+    public WebElement modalPopUp;
 
     @FindBy (id = "gss-signin-email")
-    private WebElement emailAddPopup;
+    public WebElement emailAddPopup;
 
     @FindBy (id = "gss-signin-password")
-    private WebElement passwordPopup;
+    public WebElement passwordPopup;
 
     @FindBy (id = "gss-signin-submit")
-    private WebElement subminButtonPopup;
-
-    private static final Logger LOGGER = Logger.getLogger(SignInPage.class);
-
+    public WebElement subminButtonPopup;
 
     public SignInPage(WebDriver driver){
         super(driver);
     }
-
 
     public void signIn(String email, String pass){
             emailAdd.sendKeys(email);
             password.sendKeys(pass);
             subminButton.click();
             LOGGER.info("Login form submitted");
-
     }
 }

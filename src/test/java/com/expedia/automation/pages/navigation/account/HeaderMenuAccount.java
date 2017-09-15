@@ -8,10 +8,10 @@ import org.openqa.selenium.support.FindBy;
 public class HeaderMenuAccount extends BasePage {
 
     @FindBy (id = "header-account-menu")
-    private WebElement accountMenu;
+    public WebElement accountMenu;
 
     @FindBy (id = "account-signin")
-    private WebElement singInLink;
+    public WebElement singInLink;
 
     @FindBy (id = "signInheader")
     public WebElement pageTitle;

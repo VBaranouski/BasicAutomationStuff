@@ -46,13 +46,13 @@ public class MyAccountPage extends BasePage {
     public WebElement personalInfo;
 
     @FindBy (id = "radio-male")
-    private WebElement maleRadioButton;
+    public WebElement maleRadioButton;
 
     @FindBy (id = "radio-female")
-    private WebElement femaleRadioButton;
+    public WebElement femaleRadioButton;
 
     @FindBy (id = "name_button")
-    private WebElement savePersonalInfo;
+    public WebElement savePersonalInfo;
 
     @FindBy (xpath = "//*[@id=\"pi\"]/article/div/span")
     public WebElement personalInfoTitle;
@@ -71,10 +71,10 @@ public class MyAccountPage extends BasePage {
     public WebElement flightPrefTitle;
 
     @FindBy (id = "seatingPreference")
-    private WebElement seatingPrefDropdown;
+    public WebElement seatingPrefDropdown;
 
     @FindBy (id = "specialRequest")
-    private WebElement specialRequestDropdown;
+    public WebElement specialRequestDropdown;
 
     @FindBy (id = "flight_preferences_button")
     public WebElement saveFligthPrefButton;

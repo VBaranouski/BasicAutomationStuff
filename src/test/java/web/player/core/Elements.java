@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Elements extends BaseWebPage {
+
+    // you can keep these elements in BaseWebPage - this class has't  been necessary for creation
     public Elements(WebDriver driver) {
         super(driver);
     }
@@ -68,9 +70,12 @@ public class Elements extends BaseWebPage {
 
     //Closed Captions - Settings popup
 
-    @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-settings-back")
+    @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > " +
+            "div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-settings-back")
     public static WebElement settingsFontSizeBackButton;
 
+    // please read about the building xpaths
+    // for above element it can be like this - "Locator": "XPath:://div[contains(@class, 'edge-gui-cc-settings-expanded')][2]/div[@class='edge-gui-settings-back']"
     @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(3) > div.edge-gui-settings-back")
     public static WebElement settingsFontColorBackButton;
 

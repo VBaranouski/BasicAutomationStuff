@@ -28,6 +28,23 @@ public class PlayerActions extends BaseWebPage {
 
     public void mutePlayback() { Elements.volumeIcon.click(); }
 
+
+    // bad structure:
+    // 1. all this staff need to move to BaseWebPage
+    // 2. rarely we create method with only on line
+    // 3. I hope that for example method mutePlayback in the near future will be like
+    //    public void muteAd() {
+    //        Logger.logMessage("Mute the Ad ...");
+    //        openPlayerToolbar();
+    //        if (adVolumeIcon().isPresent()) {
+    //            adVolumeIcon().waitForPresent().click();
+    //        } else {
+    //            Logger.logMessage("Ad is already muted.");
+    //        }
+    //    }
+    // =)
+
+
     public void unmutePlayback() {
         Elements.volumeIcon.click();
     }
