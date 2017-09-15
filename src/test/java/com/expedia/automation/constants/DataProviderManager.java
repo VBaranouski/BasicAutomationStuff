@@ -1,10 +1,12 @@
 package com.expedia.automation.constants;
 
 
+import org.testng.annotations.DataProvider;
+
 public class DataProviderManager {
 
 
-    @org.testng.annotations.DataProvider //(parallel = true)
+    @DataProvider //(parallel = true)
     static public Object[][] searchFlightInfoProvider() {
         return new Object[][]{
                 {"Minsk, Belarus (MSQ-Minsk Intl.)", "New York, NY (NYC-All Airports)", "09/25/2017", "10/10/2017", 2, "New York"},

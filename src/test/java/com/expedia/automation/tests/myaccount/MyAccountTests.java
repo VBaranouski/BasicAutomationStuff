@@ -34,8 +34,10 @@ public class MyAccountTests extends BaseTest {
     @Test(priority = 3, enabled = false, groups = {"full"})
     public void travelDetailsPersonalInfoCheck(){
         myAccountPage.openMyAccountPage();
+        // from best practice we add an error msg into all assertions
         Assert.assertTrue(myAccountPage.personalInfo.isDisplayed());
         Assert.assertEquals(myAccountPage.personalInfoTitle.getText(), Constants.PERSONAL_INFO_TITLE);
+        // usually after assertions we don't have any other actions, it's logical, you tested something and finished test
         myAccountPage.personalInfo();
     }
 
