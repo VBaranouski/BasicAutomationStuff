@@ -4,7 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import web.player.constants.ContentTypes;
-import web.player.core.Elements;
+import web.player.core.BaseWebPage;
 import web.player.tests.WebPlayerBaseTest;
 
 public class GuiTests extends WebPlayerBaseTest {
@@ -12,50 +12,50 @@ public class GuiTests extends WebPlayerBaseTest {
 
     @Test(enabled = false)
     public void pauseAndPlayCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
-        wait.until(ExpectedConditions.elementToBeClickable(Elements.progressBar));
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:03"));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
+        wait.until(ExpectedConditions.elementToBeClickable(BaseWebPage.progressBar));
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:03"));
         playerAction.pausePlayback();
-        Assert.assertEquals(Elements.currentPlaybackTime.getText(), "00:03");
+        Assert.assertEquals(BaseWebPage.currentPlaybackTime.getText(), "00:03");
         playerAction.resumePlayback();
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:05"));
-        Assert.assertEquals(Elements.currentPlaybackTime.getText(), "00:05");
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:05"));
+        Assert.assertEquals(BaseWebPage.currentPlaybackTime.getText(), "00:05");
     }
 
 
     @Test(enabled = false)
     public void volumeCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
-        wait.until(ExpectedConditions.visibilityOf(Elements.progressBar));
-        Assert.assertTrue(Elements.volumeIcon.isDisplayed());
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.progressBar));
+        Assert.assertTrue(BaseWebPage.volumeIcon.isDisplayed());
         playerAction.mutePlayback();
         playerAction.unmutePlayback();
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:03"));
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:03"));
     }
 
 
     @Test(enabled = false)
     public void fullScreenTest() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
-        wait.until(ExpectedConditions.visibilityOf(Elements.progressBar));
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.progressBar));
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:01"));
         playerAction.openFullScreen();
-        wait.until(ExpectedConditions.visibilityOf(Elements.titleMetadata));
-        Assert.assertTrue(Elements.titleMetadata.isDisplayed());
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.titleMetadata));
+        Assert.assertTrue(BaseWebPage.titleMetadata.isDisplayed());
         playerAction.exitFullScreen();
-        Assert.assertFalse(Elements.titleMetadata.isDisplayed());
+        Assert.assertFalse(BaseWebPage.titleMetadata.isDisplayed());
     }
 
     @Test(enabled = false)
     public void fullScreenTestS() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
-        wait.until(ExpectedConditions.visibilityOf(Elements.progressBar));
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.progressBar));
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:01"));
         playerAction.openFullScreen();
-        wait.until(ExpectedConditions.visibilityOf(Elements.titleMetadata));
-        Assert.assertTrue(Elements.titleMetadata.isDisplayed());
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.titleMetadata));
+        Assert.assertTrue(BaseWebPage.titleMetadata.isDisplayed());
         playerAction.exitFullScreen();
-        Assert.assertFalse(Elements.titleMetadata.isDisplayed());
+        Assert.assertFalse(BaseWebPage.titleMetadata.isDisplayed());
     }
 
 

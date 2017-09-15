@@ -5,77 +5,77 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
-import web.player.core.Elements;
+import web.player.core.BaseWebPage;
 import web.player.tests.WebPlayerBaseTest;
 
 public class ClosedCaptioning extends WebPlayerBaseTest {
 
     @Test(enabled = false, priority = 1)
     public void ccIconDisplayCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(Elements.progressBar));
-        Assert.assertTrue(Elements.closedCaptionsIcon.isDisplayed());
-        Assert.assertTrue(Elements.settingsIcon.isDisplayed());
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.progressBar));
+        Assert.assertTrue(BaseWebPage.closedCaptionsIcon.isDisplayed());
+        Assert.assertTrue(BaseWebPage.settingsIcon.isDisplayed());
     }
 
 
     @Test(enabled = false, priority = 2, dependsOnMethods = "ccIconCheck")
     public void ccOnOffCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(Elements.closedCaptionsIcon));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.closedCaptionsIcon));
         playerAction.showClosedCaptions();
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));
-        Assert.assertTrue(Elements.ccContainer.isDisplayed());
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:01"));
+        Assert.assertTrue(BaseWebPage.ccContainer.isDisplayed());
         playerAction.hideClosedCaptions();
-        Assert.assertFalse(Elements.ccContainer.isDisplayed());
+        Assert.assertFalse(BaseWebPage.ccContainer.isDisplayed());
     }
 
 
     @Test(enabled = false, priority = 2)
     public void ccTextCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(Elements.closedCaptionsIcon));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.closedCaptionsIcon));
         playerAction.showClosedCaptions();
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));
-        Assert.assertEquals(Elements.firstRowCC.getText(), "- MARY JANE: Previously,");
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:01"));
+        Assert.assertEquals(BaseWebPage.firstRowCC.getText(), "- MARY JANE: Previously,", "First row of CC doesn't match");
     }
 
 
     @Test(enabled = true, priority = 2)
     public void ccDefaultSettingsCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(Elements.closedCaptionsIcon));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.closedCaptionsIcon));
         playerAction.showClosedCaptions();
-        wait.until(ExpectedConditions.textToBePresentInElement(Elements.currentPlaybackTime, "00:01"));
-        Assert.assertEquals(Elements.firstRowCC.getCssValue("color"), WebPlayerConstants.CC_DEFAULT_COLOR);
-        Assert.assertEquals(Elements.firstRowCC.getCssValue("font-family"), WebPlayerConstants.CC_DEFAULT_FONT_FAMILY);
-        Assert.assertEquals(Elements.firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_DEFAULT_FONT_SIZE);
-        Assert.assertEquals(Elements.firstRowCC.getCssValue("background-color"), WebPlayerConstants.CC_DEFAULT_BACKGROUND_COLOR);
-        playerAction.hideClosedCaptions();
+        wait.until(ExpectedConditions.textToBePresentInElement(BaseWebPage.currentPlaybackTime, "00:01"));
+        Assert.assertEquals(BaseWebPage.firstRowCC.getCssValue("color"), WebPlayerConstants.CC_DEFAULT_COLOR, "Wrong Default Color");
+        Assert.assertEquals(BaseWebPage.firstRowCC.getCssValue("font-family"), WebPlayerConstants.CC_DEFAULT_FONT_FAMILY, "Wrong Default Font Family");
+        Assert.assertEquals(BaseWebPage.firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_DEFAULT_FONT_SIZE, "Wrong Default Font Size");
+        Assert.assertEquals(BaseWebPage.firstRowCC.getCssValue("background-color"), WebPlayerConstants.CC_DEFAULT_BACKGROUND_COLOR, "Wrong Background Color");
+
     }
 
 
     @Test(enabled = false, priority = 2)
     public void ccSettingsMenuCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(Elements.settingsIcon));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.settingsIcon));
         playerAction.openSettingsMenu();
-        Assert.assertTrue(Elements.settingsPopup.isDisplayed());
+        Assert.assertTrue(BaseWebPage.settingsPopup.isDisplayed());
         playerAction.hideSettingsMenu();
-        Assert.assertFalse(Elements.settingsPopup.isDisplayed());
+        Assert.assertFalse(BaseWebPage.settingsPopup.isDisplayed());
     }
 
 
-    @Test(enabled = true, priority = 2)
+    @Test(enabled = false, priority = 2)
     public void ccSettingsChangeCheck() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(Elements.settingsIcon));
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        wait.until(ExpectedConditions.visibilityOf(BaseWebPage.settingsIcon));
         playerAction.showClosedCaptions();
         playerAction.openSettingsMenu();
         playerAction.selectSmallFontSize();
-        Assert.assertEquals(Elements.firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_SMALL_FONT_SIZE);
+        Assert.assertEquals(BaseWebPage.firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_SMALL_FONT_SIZE, "Small size of CC is not selected");
         playerAction.selectRedColor();
-        Assert.assertEquals(Elements.firstRowCC.getCssValue("color"), WebPlayerConstants.CC_RED_COLOR);
+        Assert.assertEquals(BaseWebPage.firstRowCC.getCssValue("color"), WebPlayerConstants.CC_RED_COLOR, "Red color is not selected");
 
     }
 }

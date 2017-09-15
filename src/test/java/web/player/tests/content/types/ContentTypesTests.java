@@ -8,13 +8,13 @@ public class ContentTypesTests extends WebPlayerBaseTest {
 
     @Test(enabled = false)
     public void openTestRigWithClip() {
-        baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.CLIP);
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
     }
 
     @Test(enabled = false)
-    public void openTestRigWithFullEpisode() { baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.FULL_EPISODE); }
+    public void openTestRigWithFullEpisode() { baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE); }
 
     @Test(enabled = false)
-    public void openTestRigWithLive() { baseWebPage.openTestRigPage(driver, ContentTypes.ContentType.LIVE); }
+    public void openTestRigWithLive() { baseWebPage.openTestRigPage(ContentTypes.ContentType.LIVE); }
 
 }

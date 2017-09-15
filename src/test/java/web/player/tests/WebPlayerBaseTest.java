@@ -5,9 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import web.player.core.PlayerActions;
 import web.player.core.BaseWebPage;
-import web.player.core.Elements;
+
 
 import static com.expedia.automation.driver.DriverFactory.getInstance;
 
@@ -15,9 +14,9 @@ public class WebPlayerBaseTest {
 
     protected WebDriver driver;
     protected BaseWebPage baseWebPage;
-    protected Elements elements;
+    protected BaseWebPage playerAction;
     protected WebDriverWait wait;
-    protected PlayerActions playerAction;
+
 
 
     @BeforeMethod
@@ -30,8 +29,7 @@ public class WebPlayerBaseTest {
     public void createObjects(){
         wait = new WebDriverWait(driver, 50);
         baseWebPage = new BaseWebPage(driver);
-        elements = new Elements(driver);
-        playerAction = new PlayerActions(driver);
+        playerAction = new BaseWebPage(driver);
     }
 
     @AfterMethod
