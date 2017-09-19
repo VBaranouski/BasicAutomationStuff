@@ -1,15 +1,20 @@
 package web.player.core;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
+
+import static web.player.tests.WebPlayerBaseTest.wait;
 
 public class BaseWebPage {
 
     public WebDriver driver;
+    private static Logger Log = Logger.getLogger(BaseWebPage.class);
 
     public BaseWebPage (WebDriver driver) {
         this.driver = driver;
@@ -68,13 +73,14 @@ public class BaseWebPage {
     @FindBy (className = "edge-gui-progress-bar")
     public static WebElement progressBar;
 
-    @FindBy (className = "edge-gui-background")
+    @FindBy (className = "edge-gui")
     public static WebElement playersFrame;
 
     //ads:
 
     @FindBy (className = " edge-gui-ad-metadata")
     public static WebElement adGuiMetadata;
+
 
     //Closed Captions:
 
@@ -87,21 +93,24 @@ public class BaseWebPage {
     @FindBy (className = "edge-cc-track-cue")
     public static WebElement firstRowCC;
 
+
     //Closed Captions - Settings popup
 
-    @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > " +
-            "div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-settings-back")
+    @FindBy (xpath = ".//div[contains(@class, 'edge-gui-cc-settings-expanded')][2]/div[@class = 'edge-gui-settings-back']")
     public static WebElement settingsFontSizeBackButton;
 
     // please read about the building xpaths
     // for above element it can be like this - "Locator": "XPath:://div[contains(@class, 'edge-gui-cc-settings-expanded')][2]/div[@class='edge-gui-settings-back']"
-    @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(3) > div.edge-gui-settings-back")
+
+    //@FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(3) > div.edge-gui-settings-back")
+    @FindBy (xpath = ".//div[contains(@class, 'edge-gui-cc-settings-expanded')][3]/div[@class = 'edge-gui-settings-back']")
     public static WebElement settingsFontColorBackButton;
 
-    @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-cc-expander.edge-gui-cc-expander-label")
+    //@FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-cc-expander.edge-gui-cc-expander-label")
+    @FindBy (xpath = ".//div[contains(@class, 'edge-gui-cc-settings-expanded')]/div[contains(@class, 'edge-gui-cc-expander-label')][text()='Medium']")
     public static WebElement ccFontSize;
 
-    @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(2) > div.edge-gui-font-selectors > div:nth-child(1)")
+    @FindBy (xpath = ".//div[contains(@class, 'edge-gui-cc-settings-expanded')][2]/div[@class = 'edge-gui-font-selectors']/div[@data-value=\"small\"]")
     public static WebElement ccSmallFontSize;
 
     @FindBy (css = "#video-player > div.edge-gui > div.edge-gui-settings.edge-gui-settings-no-tabs > div.edge-gui-settings-container > div > div.edge-gui-cc-options-container > div.edge-gui-cc-options-button-list > div:nth-child(3) > div.edge-gui-cc-expander.edge-gui-cc-expander-color")
@@ -112,26 +121,34 @@ public class BaseWebPage {
 
 
 
-
     // Player Actions GUI
 
     public void pausePlayback() {
-        BaseWebPage.playButton.click();
+        Log.info("muting playback");
+        if (playButton.isDisplayed()){
+            playButton.click();
+        }
+        else {
+            Log.error("Play button is not visible. May be GUI is not loaded");
+        }
+
     }
 
+    public void tapOnPlayer(){playersFrame.click();}
+
     public void resumePlayback() {
-        BaseWebPage.pauseButton.click();
+        pauseButton.click();
     }
 
     public void openFullScreen(){
-        BaseWebPage.fullScreenIcon.click();
+        fullScreenIcon.click();
     }
 
     public void exitFullScreen(){
-        BaseWebPage.fullScreenIcon.click();
+        fullScreenIcon.click();
     }
 
-    public void mutePlayback() { BaseWebPage.volumeIcon.click(); }
+    public void mutePlayback() { volumeIcon.click(); }
 
     // 3. I hope that for example method mutePlayback in the near future will be like
     //    public void muteAd() {
@@ -147,7 +164,7 @@ public class BaseWebPage {
 
 
     public void unmutePlayback() {
-        BaseWebPage.volumeIcon.click();
+        volumeIcon.click();
     }
 
     //AD break
@@ -156,24 +173,49 @@ public class BaseWebPage {
 
     // Closed Captions
 
-    public void openSettingsMenu(){ BaseWebPage.settingsIcon.click(); }
+    public void openSettingsMenu(){ settingsIcon.click(); }
 
-    public void hideSettingsMenu(){BaseWebPage.settingsIcon.click(); }
+    public void hideSettingsMenu(){settingsIcon.click(); }
 
-    public void showClosedCaptions(){BaseWebPage.closedCaptionsIcon.click();}
+    public void showClosedCaptions(){
+        Log.info("Enabling Closed Captions");
+        if (closedCaptionsIcon.isDisplayed()) {
+            closedCaptionsIcon.click();
+        }
+        else {
+            Log.info("Closed Captions is not displayed. Waiting for the icon to be clickable");
+            wait.until(ExpectedConditions.visibilityOf(closedCaptionsIcon));
+            closedCaptionsIcon.click();
+        }
+    }
 
-    public void hideClosedCaptions(){BaseWebPage.closedCaptionsIcon.click();}
+    public void hideClosedCaptions(){closedCaptionsIcon.click();}
 
     public void selectSmallFontSize(){
-        BaseWebPage.ccFontSize.click();
-        BaseWebPage.ccSmallFontSize.click();
-        BaseWebPage.settingsFontSizeBackButton.click();
+        if (ccFontSize.isDisplayed()){
+            ccFontSize.click();
+        }
+        else {wait.until(ExpectedConditions.visibilityOf(ccFontSize));
+            ccFontSize.click();
+        }
+        if (ccSmallFontSize.isDisplayed()) {
+            ccSmallFontSize.click();
+        }
+        else {wait.until(ExpectedConditions.visibilityOf(ccSmallFontSize));
+            ccSmallFontSize.click();
+        }
+        if (settingsFontSizeBackButton.isDisplayed()) {
+            settingsFontSizeBackButton.click();
+        }
+        else {wait.until(ExpectedConditions.visibilityOf(ccSmallFontSize));
+            settingsIcon.click();
+        }
     }
 
     public void selectRedColor(){
-        BaseWebPage.ccFontColor.click();
-        BaseWebPage.ccFontColorRed.click();
-        BaseWebPage.settingsFontColorBackButton.click();
+        ccFontColor.click();
+        ccFontColorRed.click();
+        settingsFontColorBackButton.click();
     }
 
 
