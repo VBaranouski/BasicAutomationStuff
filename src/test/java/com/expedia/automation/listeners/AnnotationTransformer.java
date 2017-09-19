@@ -1,5 +1,6 @@
 package com.expedia.automation.listeners;
 
+import com.expedia.automation.utils.RetryAnalyzer;
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;
 
@@ -11,7 +12,7 @@ public class AnnotationTransformer implements IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class aClass, Constructor constructor, Method testMethod) {
 
-       // annotation.setRetryAnalyzer(RetryAnalyzer.class);
+        annotation.setRetryAnalyzer(RetryAnalyzer.class);
        // annotation.setEnabled(false);
 
         if (testMethod.getName().equals("flightSearchViaDataProvider"))
