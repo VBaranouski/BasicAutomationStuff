@@ -15,9 +15,9 @@ public class ShareModuleTests extends WebPlayerBaseTest {
     public void shareIconDisplayCheck() {
 
         baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
-        wait.until(ExpectedConditions.visibilityOf(progressBar));
+        elementWait.until(ExpectedConditions.visibilityOf(progressBar));
         playerAction.openFullScreen();
-        wait.until(ExpectedConditions.visibilityOf(shareIcon));
+        elementWait.until(ExpectedConditions.visibilityOf(shareIcon));
         playerAction.exitFullScreen();
         Assert.assertFalse(shareIcon.isDisplayed());
 
