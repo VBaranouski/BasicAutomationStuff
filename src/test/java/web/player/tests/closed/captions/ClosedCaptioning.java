@@ -64,7 +64,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     }
 
 
-    @Test(enabled = true, priority = 2)
+    @Test(enabled = false, priority = 2)
     public void ccSettingsChangeCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(settingsIcon));
@@ -72,9 +72,9 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
         playerAction.openSettingsMenu();
         playerAction.selectSmallFontSize();
         elementWait.until(ExpectedConditions.visibilityOf(firstRowCC));
-        Assert.assertEquals(firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_SMALL_FONT_SIZE, "Small size of CC is not selected");
+        Assert.assertEquals(firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_SMALL_FONT_SIZE, "Small size of CC is not applied");
         playerAction.selectRedColor();
-        Assert.assertEquals(firstRowCC.getCssValue("color"), WebPlayerConstants.CC_RED_COLOR, "Red color is not selected");
+        Assert.assertEquals(firstRowCC.getCssValue("color"), WebPlayerConstants.CC_RED_COLOR, "Red color is not applied");
 
     }
 }

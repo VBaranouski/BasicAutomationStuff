@@ -76,6 +76,9 @@ public class BaseWebPage {
     @FindBy (className = "edge-gui")
     public static WebElement playersFrame;
 
+    @FindBy (className = "edge-gui-progress-bar-thumb")
+    public static WebElement scrubber;
+
     //ads:
 
     @FindBy (className = " edge-gui-ad-metadata")
@@ -119,15 +122,14 @@ public class BaseWebPage {
     // Player Actions GUI
 
     public void pausePlayback() {
-        Log.info("muting playback");
         if (playButton.isDisplayed()){
             playButton.click();
         }
         else {
             Log.error("Play button is not visible. May be GUI is not loaded");
         }
-
     }
+
 
     public void tapOnPlayer(){playersFrame.click();}
 
@@ -172,6 +174,7 @@ public class BaseWebPage {
     public void openSettingsMenu(){ settingsIcon.click(); }
 
     public void hideSettingsMenu(){settingsIcon.click(); }
+
 
     public void showClosedCaptions(){
         Log.info("Enabling Closed Captions");

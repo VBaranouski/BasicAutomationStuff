@@ -14,12 +14,12 @@ public class GuiTests extends WebPlayerBaseTest {
     @Test(enabled = false)
     public void pauseAndPlayCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
-        pageLoadWait.until(ExpectedConditions.elementToBeClickable(progressBar));
+        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:03"));
         playerAction.pausePlayback();
         Assert.assertEquals(currentPlaybackTime.getText(), "00:03");
         playerAction.resumePlayback();
-        playerAction.tapOnPlayer();
+        //playerAction.tapOnPlayer();
         elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:05"));
         Assert.assertEquals(currentPlaybackTime.getText(), "00:05");
     }
@@ -60,6 +60,17 @@ public class GuiTests extends WebPlayerBaseTest {
         Assert.assertFalse(titleMetadata.isDisplayed());
     }
 
+    @Test(enabled = true)
+    public void scrubbingTest(){
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
+        elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
+        //scrubAction.clickAndHold(scrubber);
+        //scrubAction.moveToElement(scrubber, 500, 0).release().build().perform();
+        scrubAction.dragAndDropBy(scrubber, 200, 0).release().perform();
+        elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:10"));
+
+    }
 
 
 }
