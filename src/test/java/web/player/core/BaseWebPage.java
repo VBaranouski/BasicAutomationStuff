@@ -150,6 +150,7 @@ public class BaseWebPage {
 
     public void mutePlayback() { volumeIcon.click(); }
 
+
     // 3. I hope that for example method mutePlayback in the near future will be like
     //    public void muteAd() {
     //        Logger.logMessage("Mute the Ad ...");
@@ -192,6 +193,7 @@ public class BaseWebPage {
     public void hideClosedCaptions(){closedCaptionsIcon.click();}
 
     public void selectSmallFontSize(){
+        Log.info("Select Small Font Size");
         if (ccFontSize.isDisplayed()){
             ccFontSize.click();
         }
