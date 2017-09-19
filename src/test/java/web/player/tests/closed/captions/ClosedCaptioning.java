@@ -14,7 +14,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     @Test(enabled = false, priority = 1)
     public void ccIconDisplayCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(progressBar));
+        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         Assert.assertTrue(closedCaptionsIcon.isDisplayed());
         Assert.assertTrue(settingsIcon.isDisplayed());
     }
@@ -24,7 +24,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     public void ccOnOffCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         playerAction.showClosedCaptions();
-        wait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
+        pageLoadWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
         Assert.assertTrue(ccContainer.isDisplayed());
         playerAction.hideClosedCaptions();
         Assert.assertFalse(ccContainer.isDisplayed());
@@ -34,17 +34,17 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     @Test(enabled = false, priority = 2)
     public void ccTextCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        pageLoadWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
         playerAction.showClosedCaptions();
-        wait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
         Assert.assertEquals(firstRowCC.getText(), "- MARY JANE: Previously,", "First row of CC doesn't match");
     }
 
 
-    @Test(enabled = true, priority = 2)
+    @Test(enabled = false, priority = 2)
     public void ccDefaultSettingsCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         playerAction.showClosedCaptions();
-        wait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
+        pageLoadWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
         Assert.assertEquals(firstRowCC.getCssValue("color"), WebPlayerConstants.CC_DEFAULT_COLOR, "Wrong Default Color");
         Assert.assertEquals(firstRowCC.getCssValue("font-family"), WebPlayerConstants.CC_DEFAULT_FONT_FAMILY, "Wrong Default Font Family");
         Assert.assertEquals(firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_DEFAULT_FONT_SIZE, "Wrong Default Font Size");
@@ -56,7 +56,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     @Test(enabled = false, priority = 2)
     public void ccSettingsMenuCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(settingsIcon));
+        pageLoadWait.until(ExpectedConditions.visibilityOf(settingsIcon));
         playerAction.openSettingsMenu();
         Assert.assertTrue(settingsPopup.isDisplayed());
         playerAction.hideSettingsMenu();
@@ -67,11 +67,11 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     @Test(enabled = true, priority = 2)
     public void ccSettingsChangeCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        wait.until(ExpectedConditions.visibilityOf(settingsIcon));
+        pageLoadWait.until(ExpectedConditions.visibilityOf(settingsIcon));
         playerAction.showClosedCaptions();
         playerAction.openSettingsMenu();
         playerAction.selectSmallFontSize();
-        wait.until(ExpectedConditions.visibilityOf(firstRowCC));
+        elementWait.until(ExpectedConditions.visibilityOf(firstRowCC));
         Assert.assertEquals(firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_SMALL_FONT_SIZE, "Small size of CC is not selected");
         playerAction.selectRedColor();
         Assert.assertEquals(firstRowCC.getCssValue("color"), WebPlayerConstants.CC_RED_COLOR, "Red color is not selected");
