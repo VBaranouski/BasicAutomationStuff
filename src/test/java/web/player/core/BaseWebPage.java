@@ -10,10 +10,12 @@ import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
 
 import static web.player.tests.WebPlayerBaseTest.elementWait;
+import static web.player.tests.WebPlayerBaseTest.scrubAction;
 
 public class BaseWebPage {
 
     public WebDriver driver;
+
     private static Logger Log = Logger.getLogger(BaseWebPage.class);
 
     public BaseWebPage (WebDriver driver) {
@@ -79,6 +81,12 @@ public class BaseWebPage {
     @FindBy (className = "edge-gui-progress-bar-thumb")
     public static WebElement scrubber;
 
+    @FindBy (xpath = ".//div[@class = 'edge-gui-progress-bar-cuepoint-container']/div[1]")
+    public static  WebElement firstCuePoint;
+
+    @FindBy (className = "edge-gui-progress-bar-cuepoint-container")
+    public static WebElement cuePoints;
+
     //ads:
 
     @FindBy (className = " edge-gui-ad-metadata")
@@ -138,6 +146,8 @@ public class BaseWebPage {
     }
 
     public void openFullScreen(){
+        Log.info("Opening FS");
+        elementWait.until(ExpectedConditions.visibilityOf(fullScreenIcon));
         fullScreenIcon.click();
     }
 
@@ -222,5 +232,19 @@ public class BaseWebPage {
         settingsFontColorBackButton.click();
     }
 
+    public void scrubToNextSegment() {
+        elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
+        if (!cuePoints.getCssValue("display").equals("none")){
+            elementWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
+            Log.info("CuePoints are found. Scrubbing...");
+            //long duraitonInSeconds = TimeUnit.SECONDS.toMinutes(playbackDuration.getText());
+            Double doubleValueOfCuePoint = new Double(Double.parseDouble(firstCuePoint.getCssValue("left").replaceAll("[^0-9.]", "")));
+            int xScrubber = doubleValueOfCuePoint.intValue();
+            scrubAction.dragAndDropBy(scrubber, xScrubber+10, 0).release().perform();
+        } else {
+            Log.info("Cue points are not found. This is not a Full Episode or Seamless mode is enabled");
+            scrubAction.dragAndDropBy(scrubber, progressBar.getSize().width - scrubber.getLocation().x, 0).release().perform();
+        }
+    }
 
 }
