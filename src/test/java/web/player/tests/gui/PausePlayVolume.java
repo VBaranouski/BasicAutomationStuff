@@ -8,7 +8,7 @@ import web.player.tests.WebPlayerBaseTest;
 
 import static web.player.core.BaseWebPage.*;
 
-public class GuiTests extends WebPlayerBaseTest {
+public class PausePlayVolume extends WebPlayerBaseTest {
 
 
     @Test(enabled = false)

@@ -1,4 +1,4 @@
-package web.player.tests.share;
+package web.player.tests.gui;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -9,7 +9,7 @@ import web.player.tests.WebPlayerBaseTest;
 import static web.player.core.BaseWebPage.progressBar;
 import static web.player.core.BaseWebPage.shareIcon;
 
-public class ShareModuleTests extends WebPlayerBaseTest {
+public class Share extends WebPlayerBaseTest {
 
     @Test(enabled = false)
     public void shareIconDisplayCheck() {
