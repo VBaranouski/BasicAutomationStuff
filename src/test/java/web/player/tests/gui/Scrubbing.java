@@ -19,7 +19,7 @@ public class Scrubbing extends WebPlayerBaseTest {
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         playerAction.scrubToNextSegment();
         Assert.assertEquals(playerAction.getScrubbedTime(), getTimeOfElementInSeconds(currentPlaybackTime),20,
-                "Scrubbed and actual playback time doesn't match. Delta was 10 seconds:");
+                "Scrubbed and actual playback time doesn't match. Difference is more than 10 seconds:");
     }
 
     @Test(enabled = true)
@@ -28,7 +28,7 @@ public class Scrubbing extends WebPlayerBaseTest {
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         playerAction.scrubToNextSegment();
         Assert.assertEquals(playerAction.getScrubbedTime(), getTimeOfElementInSeconds(currentPlaybackTime),10,
-                "Scrubbed and actual playback time doesn't match. Delta was 20 seconds:");
+                "Scrubbed and actual playback time doesn't match. Difference is more than 20 seconds:");
     }
 
     @Test(enabled = false)
