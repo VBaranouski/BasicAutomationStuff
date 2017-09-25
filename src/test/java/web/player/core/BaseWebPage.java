@@ -9,8 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
 
-import static web.player.tests.WebPlayerBaseTest.elementWait;
-import static web.player.tests.WebPlayerBaseTest.scrubAction;
+import static web.player.tests.WebPlayerBaseTest.*;
 
 public class BaseWebPage {
 
@@ -232,19 +231,38 @@ public class BaseWebPage {
         settingsFontColorBackButton.click();
     }
 
+
+    public int scrubbedTime;
+
+    public int getScrubbedTime() { return scrubbedTime; }
+
+    public void setScrubbedTime(int scrubbedTime) { this.scrubbedTime = scrubbedTime; }
+
     public void scrubToNextSegment() {
-        elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
         if (!cuePoints.getCssValue("display").equals("none")){
             elementWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
             Log.info("CuePoints are found. Scrubbing...");
-            //long duraitonInSeconds = TimeUnit.SECONDS.toMinutes(playbackDuration.getText());
             Double doubleValueOfCuePoint = new Double(Double.parseDouble(firstCuePoint.getCssValue("left").replaceAll("[^0-9.]", "")));
             int xScrubber = doubleValueOfCuePoint.intValue();
+            int initialScrubberLocation = scrubber.getLocation().x;
             scrubAction.dragAndDropBy(scrubber, xScrubber+10, 0).release().perform();
-        } else {
-            Log.info("Cue points are not found. This is not a Full Episode or Seamless mode is enabled");
-            scrubAction.dragAndDropBy(scrubber, progressBar.getSize().width - scrubber.getLocation().x, 0).release().perform();
-        }
+            crossSegmentScrubWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
+            int afterscrubScrubberLocation = scrubber.getLocation().x;
+            setScrubbedTime(getTimeOfElementInSeconds(playbackDuration)*(afterscrubScrubberLocation-initialScrubberLocation)/(progressBar.getSize().width));
+            }
+            else { Log.info("Cue points are not found. This is not a Full Episode or Seamless mode is enabled. Scrubbing into the middle");
+                int initialScrubberLocation = scrubber.getLocation().x;
+                scrubAction.dragAndDropBy(scrubber, (progressBar.getSize().width - scrubber.getLocation().x)/2, 0).release().perform();
+                int afterscrubScrubberLocation = scrubber.getLocation().x;
+                setScrubbedTime(getTimeOfElementInSeconds(playbackDuration)*(afterscrubScrubberLocation-initialScrubberLocation)/(progressBar.getSize().width));
+                }
+    }
+
+    public static int getTimeOfElementInSeconds(WebElement elementName) {
+        elementWait.until(ExpectedConditions.visibilityOf(elementName));
+        String[] parts = elementName.getText().split(":");
+        int playbackDurationInSeconds = Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+        return playbackDurationInSeconds;
     }
 
 }

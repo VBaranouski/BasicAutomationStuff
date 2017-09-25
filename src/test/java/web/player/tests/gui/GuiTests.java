@@ -19,7 +19,6 @@ public class GuiTests extends WebPlayerBaseTest {
         playerAction.pausePlayback();
         Assert.assertEquals(currentPlaybackTime.getText(), "00:03");
         playerAction.resumePlayback();
-        //playerAction.tapOnPlayer();
         elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:05"));
         Assert.assertEquals(currentPlaybackTime.getText(), "00:05");
     }
@@ -47,45 +46,6 @@ public class GuiTests extends WebPlayerBaseTest {
         Assert.assertFalse(titleMetadata.isDisplayed());
     }
 
-
-    @Test(enabled = true)
-    public void scrubInFE(){
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        playerAction.scrubToNextSegment();
-        crossSegmentScrubWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "01:06"));
-    }
-
-    @Test(enabled = true)
-    public void scrubInClip(){
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        playerAction.scrubToNextSegment();
-        crossSegmentScrubWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "10:06"));
-    }
-
-
-    @Test(enabled = false)
-    public void scrubbingInFullScreenTest(){
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
-        playerAction.openFullScreen();
-        scrubAction.dragAndDropBy(scrubber, 200, 0).release().perform();
-        crossSegmentScrubWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "05:06"));
-
-    }
-
-    @Test(enabled = false)
-    public void doubleScrubbing(){
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        elementWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "00:01"));
-        scrubAction.dragAndDropBy(scrubber, 200, 0).release().perform();
-        scrubAction.dragAndDropBy(scrubber, 200, 0).release().perform();
-        crossSegmentScrubWait.until(ExpectedConditions.textToBePresentInElement(currentPlaybackTime, "14:19"));
-
-    }
 
 
 }

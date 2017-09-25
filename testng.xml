@@ -30,6 +30,7 @@
             <class name="web.player.tests.closed.captions.ClosedCaptioning" />
             <class name="web.player.tests.gui.GuiTests" />
             <class name="web.player.tests.share.ShareModuleTests" />
+            <class name="web.player.tests.gui.Scrubbing" />
         </classes>
     </test>
 
