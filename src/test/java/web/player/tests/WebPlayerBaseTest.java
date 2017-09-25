@@ -16,9 +16,10 @@ public class WebPlayerBaseTest {
     protected WebDriver driver;
     protected BaseWebPage baseWebPage;
     protected BaseWebPage playerAction;
-    protected Actions scrubAction;
+    public static Actions scrubAction;
     public static Wait elementWait;
     public static Wait pageLoadWait;
+    public static Wait crossSegmentScrubWait;
 
 
 
@@ -32,8 +33,9 @@ public class WebPlayerBaseTest {
     @BeforeMethod
     public void createObjects(){
         //wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
-        elementWait = new WebDriverWait(driver, 20);
+        elementWait = new WebDriverWait(driver, 5);
         pageLoadWait = new WebDriverWait(driver, 30);
+        crossSegmentScrubWait = new WebDriverWait(driver, 150);
         baseWebPage = new BaseWebPage(driver);
         playerAction = new BaseWebPage(driver);
         scrubAction = new Actions(driver);

@@ -7,14 +7,15 @@ import web.player.tests.WebPlayerBaseTest;
 public class ContentTypesTests extends WebPlayerBaseTest {
 
     @Test(enabled = false)
-    public void openTestRigWithClip() {
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
-    }
+    public void openTestRigWithClip() { baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP); }
 
     @Test(enabled = false)
     public void openTestRigWithFullEpisode() { baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE); }
 
     @Test(enabled = false)
     public void openTestRigWithLive() { baseWebPage.openTestRigPage(ContentTypes.ContentType.LIVE); }
+
+    @Test(enabled = false)
+    public void openTestRigWithSeamless() { baseWebPage.openTestRigPage(ContentTypes.ContentType.SEAMLESS); }
 
 }

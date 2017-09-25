@@ -9,11 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
 
-import static web.player.tests.WebPlayerBaseTest.elementWait;
+import static web.player.tests.WebPlayerBaseTest.*;
 
 public class BaseWebPage {
 
     public WebDriver driver;
+
     private static Logger Log = Logger.getLogger(BaseWebPage.class);
 
     public BaseWebPage (WebDriver driver) {
@@ -79,6 +80,12 @@ public class BaseWebPage {
     @FindBy (className = "edge-gui-progress-bar-thumb")
     public static WebElement scrubber;
 
+    @FindBy (xpath = ".//div[@class = 'edge-gui-progress-bar-cuepoint-container']/div[1]")
+    public static  WebElement firstCuePoint;
+
+    @FindBy (className = "edge-gui-progress-bar-cuepoint-container")
+    public static WebElement cuePoints;
+
     //ads:
 
     @FindBy (className = " edge-gui-ad-metadata")
@@ -138,6 +145,8 @@ public class BaseWebPage {
     }
 
     public void openFullScreen(){
+        Log.info("Opening FS");
+        elementWait.until(ExpectedConditions.visibilityOf(fullScreenIcon));
         fullScreenIcon.click();
     }
 
@@ -222,5 +231,38 @@ public class BaseWebPage {
         settingsFontColorBackButton.click();
     }
 
+
+    public int scrubbedTime;
+
+    public int getScrubbedTime() { return scrubbedTime; }
+
+    public void setScrubbedTime(int scrubbedTime) { this.scrubbedTime = scrubbedTime; }
+
+    public void scrubToNextSegment() {
+        if (!cuePoints.getCssValue("display").equals("none")){
+            elementWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
+            Log.info("CuePoints are found. Scrubbing...");
+            Double doubleValueOfCuePoint = new Double(Double.parseDouble(firstCuePoint.getCssValue("left").replaceAll("[^0-9.]", "")));
+            int xScrubber = doubleValueOfCuePoint.intValue();
+            int initialScrubberLocation = scrubber.getLocation().x;
+            scrubAction.dragAndDropBy(scrubber, xScrubber+10, 0).release().perform();
+            crossSegmentScrubWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
+            int afterscrubScrubberLocation = scrubber.getLocation().x;
+            setScrubbedTime(getTimeOfElementInSeconds(playbackDuration)*(afterscrubScrubberLocation-initialScrubberLocation)/(progressBar.getSize().width));
+            }
+            else { Log.info("Cue points are not found. This is not a Full Episode or Seamless mode is enabled. Scrubbing into the middle");
+                int initialScrubberLocation = scrubber.getLocation().x;
+                scrubAction.dragAndDropBy(scrubber, (progressBar.getSize().width - scrubber.getLocation().x)/2, 0).release().perform();
+                int afterscrubScrubberLocation = scrubber.getLocation().x;
+                setScrubbedTime(getTimeOfElementInSeconds(playbackDuration)*(afterscrubScrubberLocation-initialScrubberLocation)/(progressBar.getSize().width));
+                }
+    }
+
+    public static int getTimeOfElementInSeconds(WebElement elementName) {
+        elementWait.until(ExpectedConditions.visibilityOf(elementName));
+        String[] parts = elementName.getText().split(":");
+        int playbackDurationInSeconds = Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+        return playbackDurationInSeconds;
+    }
 
 }
