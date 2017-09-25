@@ -174,13 +174,19 @@ public class BaseWebPage {
         volumeIcon.click();
     }
 
-    //AD break
 
-    public void waitForAdBreakfinish(){ }
+
 
     // Closed Captions
 
-    public void openSettingsMenu(){ settingsIcon.click(); }
+    public void openSettingsMenu() {
+        if (settingsIcon.isDisplayed()) {
+            settingsIcon.click();
+        }
+        else {
+            Log.info("no closed captions for this video");
+        }
+    }
 
     public void hideSettingsMenu(){settingsIcon.click(); }
 

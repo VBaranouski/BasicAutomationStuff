@@ -30,6 +30,16 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
         Assert.assertFalse(ccContainer.isDisplayed());
     }
 
+    @Test(enabled = false, priority = 2)
+    public void ccSettingsMenuCheck() {
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
+        playerAction.openSettingsMenu();
+        Assert.assertTrue(settingsPopup.isDisplayed());
+        playerAction.hideSettingsMenu();
+        Assert.assertFalse(settingsPopup.isDisplayed());
+    }
+
 
     @Test(enabled = false, priority = 2)
     public void ccTextCheck() {
@@ -53,15 +63,6 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
     }
 
 
-    @Test(enabled = false, priority = 2)
-    public void ccSettingsMenuCheck() {
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(settingsIcon));
-        playerAction.openSettingsMenu();
-        Assert.assertTrue(settingsPopup.isDisplayed());
-        playerAction.hideSettingsMenu();
-        Assert.assertFalse(settingsPopup.isDisplayed());
-    }
 
 
     @Test(enabled = false, priority = 2)
