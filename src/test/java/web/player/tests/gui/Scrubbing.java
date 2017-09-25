@@ -13,7 +13,7 @@ import static web.player.core.BaseWebPage.progressBar;
 public class Scrubbing extends WebPlayerBaseTest {
 
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void scrubInFE(){
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
@@ -22,7 +22,7 @@ public class Scrubbing extends WebPlayerBaseTest {
                 "Scrubbed and actual playback time doesn't match. Delta was 10 seconds:");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void scrubInClip(){
         baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));

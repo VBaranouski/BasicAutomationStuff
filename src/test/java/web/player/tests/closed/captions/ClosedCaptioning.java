@@ -30,7 +30,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
         Assert.assertFalse(ccContainer.isDisplayed());
     }
 
-    @Test(enabled = true, priority = 2)
+    @Test(enabled = false, priority = 2)
     public void ccSettingsMenuCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
