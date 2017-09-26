@@ -13,20 +13,22 @@ import static web.player.core.BaseWebPage.progressBar;
 public class Scrubbing extends WebPlayerBaseTest {
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void scrubInFE(){
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         playerAction.scrubToNextSegment();
+        playerAction.waitForSpinnerDisappear();
         Assert.assertEquals(playerAction.getScrubbedTime(), getTimeOfElementInSeconds(currentPlaybackTime),20,
                 "Scrubbed and actual playback time doesn't match. Difference is more than 10 seconds:");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void scrubInClip(){
         baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         playerAction.scrubToNextSegment();
+        playerAction.waitForSpinnerDisappear();
         Assert.assertEquals(playerAction.getScrubbedTime(), getTimeOfElementInSeconds(currentPlaybackTime),10,
                 "Scrubbed and actual playback time doesn't match. Difference is more than 20 seconds:");
     }
@@ -37,17 +39,20 @@ public class Scrubbing extends WebPlayerBaseTest {
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         playerAction.openFullScreen();
         playerAction.scrubToNextSegment();
+        playerAction.waitForSpinnerDisappear();
         Assert.assertEquals(playerAction.getScrubbedTime(), getTimeOfElementInSeconds(currentPlaybackTime),20,
-                "Scrubbed and actual playback time doesn't match. Delta was 20 seconds:");
+                "Scrubbed and actual playback time doesn't match. Difference is more than 20 seconds:");
     }
 
     @Test(enabled = false)
     public void scrubbingInFullScreenClip(){
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
+        playerAction.waitForSpinnerDisappear();
         playerAction.openFullScreen();
         playerAction.scrubToNextSegment();
         Assert.assertEquals(playerAction.getScrubbedTime(), getTimeOfElementInSeconds(currentPlaybackTime),10,
-                "Scrubbed and actual playback time doesn't match. Delta was 10 seconds:");
+                "Scrubbed and actual playback time doesn't match. Difference is more than 10 seconds:");
     }
+
 }

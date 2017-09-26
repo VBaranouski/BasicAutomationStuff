@@ -1,7 +1,7 @@
 package web.player.constants;
 
 public class WebPlayerConstants {
-    public static final String FULL_EPIDOSE_URL = "http://bit.ly/2ye9Bsy";
+    public static final String FULL_EPIDOSE_URL = "http://bit.ly/2x480rL";
     public static final String CLIP_URL = "http://bit.ly/2fF4haX";
     public static final String LIVE = "http://bit.ly/2tikQ56";
     public static final String SEAMLESS = "http://bit.ly/2wLm85w";
@@ -14,5 +14,7 @@ public class WebPlayerConstants {
 
     public static final String CC_SMALL_FONT_SIZE = "12.6px";
     public static final String CC_RED_COLOR = "rgba(255, 0, 0, 1)";
+
+    public static final Integer VOLUME_LEVEL = 1;
 
 }

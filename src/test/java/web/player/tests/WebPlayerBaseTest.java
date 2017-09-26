@@ -1,6 +1,7 @@
 package web.player.tests;
 
 import com.expedia.automation.driver.DriverTypes;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Wait;
@@ -20,6 +21,7 @@ public class WebPlayerBaseTest {
     public static Wait elementWait;
     public static Wait pageLoadWait;
     public static Wait crossSegmentScrubWait;
+    public JavascriptExecutor jse;
 
 
 
@@ -39,6 +41,7 @@ public class WebPlayerBaseTest {
         baseWebPage = new BaseWebPage(driver);
         playerAction = new BaseWebPage(driver);
         scrubAction = new Actions(driver);
+        jse = (JavascriptExecutor)driver;
     }
 
     @AfterMethod

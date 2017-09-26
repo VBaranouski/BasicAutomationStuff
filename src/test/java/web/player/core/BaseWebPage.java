@@ -23,18 +23,6 @@ public class BaseWebPage {
 
     }
 
-    public void openTestRigPage (ContentTypes.ContentType type){
-        switch (type){
-            case FULL_EPISODE: driver.get(WebPlayerConstants.FULL_EPIDOSE_URL);
-                break;
-            case CLIP: driver.get(WebPlayerConstants.CLIP_URL);
-                break;
-            case LIVE: driver.get(WebPlayerConstants.LIVE);
-                break;
-        }
-    }
-
-
     //Elements
     //Player Controls
 
@@ -124,9 +112,26 @@ public class BaseWebPage {
     @FindBy (xpath = ".//div[contains(@class, edge-gui-cc-settings-option)][@data-value=\"red\"]")
     public static WebElement ccFontColorRed;
 
+    @FindBy (className = "edge-spinner-icon")
+    public static WebElement spiiner;
 
 
-    // Player Actions GUI
+    //
+
+    public void openTestRigPage (ContentTypes.ContentType type){
+        switch (type){
+            case FULL_EPISODE: driver.get(WebPlayerConstants.FULL_EPIDOSE_URL);
+                break;
+            case CLIP: driver.get(WebPlayerConstants.CLIP_URL);
+                break;
+            case LIVE: driver.get(WebPlayerConstants.LIVE);
+                break;
+            case SEAMLESS: driver.get(WebPlayerConstants.SEAMLESS);
+                break;
+        }
+    }
+
+    // Player GUI
 
     public void pausePlayback() {
         if (playButton.isDisplayed()){
@@ -137,12 +142,10 @@ public class BaseWebPage {
         }
     }
 
-
-    public void tapOnPlayer(){playersFrame.click();}
-
     public void resumePlayback() {
         pauseButton.click();
     }
+
 
     public void openFullScreen(){
         Log.info("Opening FS");
@@ -156,28 +159,9 @@ public class BaseWebPage {
 
     public void mutePlayback() { volumeIcon.click(); }
 
-
-    // 3. I hope that for example method mutePlayback in the near future will be like
-    //    public void muteAd() {
-    //        Logger.logMessage("Mute the Ad ...");
-    //        openPlayerToolbar();
-    //        if (adVolumeIcon().isPresent()) {
-    //            adVolumeIcon().waitForPresent().click();
-    //        } else {
-    //            Logger.logMessage("Ad is already muted.");
-    //        }
-    //    }
-    // =)
-
-
     public void unmutePlayback() {
         volumeIcon.click();
     }
-
-
-
-
-    // Closed Captions
 
     public void openSettingsMenu() {
         if (settingsIcon.isDisplayed()) {
@@ -247,7 +231,7 @@ public class BaseWebPage {
     public void scrubToNextSegment() {
         if (!cuePoints.getCssValue("display").equals("none")){
             elementWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
-            Log.info("CuePoints are found. Scrubbing...");
+            Log.info("CuePoints are found. Scrubbing to the second segment...");
             Double doubleValueOfCuePoint = new Double(Double.parseDouble(firstCuePoint.getCssValue("left").replaceAll("[^0-9.]", "")));
             int xScrubber = doubleValueOfCuePoint.intValue();
             int initialScrubberLocation = scrubber.getLocation().x;
@@ -267,8 +251,18 @@ public class BaseWebPage {
     public static int getTimeOfElementInSeconds(WebElement elementName) {
         elementWait.until(ExpectedConditions.visibilityOf(elementName));
         String[] parts = elementName.getText().split(":");
-        int playbackDurationInSeconds = Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+        int playbackDurationInSeconds = Integer.parseInt(parts[0])*60 + Integer.parseInt(parts[1]);
         return playbackDurationInSeconds;
+    }
+
+
+    public void waitForSpinnerDisappear(){
+        if (spiiner.isDisplayed()){
+            Log.info("Waiting for spinner disappearing...");
+            pageLoadWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(spiiner)));
+        }
+        else
+        {Log.info("spinner is gone");}
     }
 
 }

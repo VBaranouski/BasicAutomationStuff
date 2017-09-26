@@ -31,6 +31,7 @@
             <class name="web.player.tests.gui.Share" />
             <class name="web.player.tests.gui.PausePlayVolume" />
             <class name="web.player.tests.gui.Scrubbing" />
+            <class name="web.player.tests.api.Api" />
         </classes>
     </test>
 
