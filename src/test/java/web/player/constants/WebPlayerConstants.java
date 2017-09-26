@@ -15,4 +15,6 @@ public class WebPlayerConstants {
     public static final String CC_SMALL_FONT_SIZE = "12.6px";
     public static final String CC_RED_COLOR = "rgba(255, 0, 0, 1)";
 
+    public static final Integer VOLUME_LEVEL = 1;
+
 }

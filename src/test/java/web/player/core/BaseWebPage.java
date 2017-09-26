@@ -158,25 +158,10 @@ public class BaseWebPage {
     }
 
     public void mutePlayback() { volumeIcon.click(); }
+
     public void unmutePlayback() {
         volumeIcon.click();
     }
-
-
-    // 3. I hope that for example method mutePlayback in the near future will be like
-    //    public void muteAd() {
-    //        Logger.logMessage("Mute the Ad ...");
-    //        openPlayerToolbar();
-    //        if (adVolumeIcon().isPresent()) {
-    //            adVolumeIcon().waitForPresent().click();
-    //        } else {
-    //            Logger.logMessage("Ad is already muted.");
-    //        }
-    //    }
-    // =)
-
-
-    // Closed Captions
 
     public void openSettingsMenu() {
         if (settingsIcon.isDisplayed()) {
@@ -273,6 +258,7 @@ public class BaseWebPage {
 
     public void waitForSpinnerDisappear(){
         if (spiiner.isDisplayed()){
+            Log.info("Waiting for spinner disappearing...");
             pageLoadWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(spiiner)));
         }
         else
