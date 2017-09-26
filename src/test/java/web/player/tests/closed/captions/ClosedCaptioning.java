@@ -59,10 +59,7 @@ public class ClosedCaptioning extends WebPlayerBaseTest {
         Assert.assertEquals(firstRowCC.getCssValue("font-family"), WebPlayerConstants.CC_DEFAULT_FONT_FAMILY, "Wrong Default Font Family");
         Assert.assertEquals(firstRowCC.getCssValue("font-size"), WebPlayerConstants.CC_DEFAULT_FONT_SIZE, "Wrong Default Font Size");
         Assert.assertEquals(firstRowCC.getCssValue("background-color"), WebPlayerConstants.CC_DEFAULT_BACKGROUND_COLOR, "Wrong Background Color");
-
     }
-
-
 
 
     @Test(enabled = false, priority = 2)
