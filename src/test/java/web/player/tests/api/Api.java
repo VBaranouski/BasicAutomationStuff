@@ -18,13 +18,13 @@ public class Api extends WebPlayerBaseTest{
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
         jse.executeScript(String.format(ApiCommands.Commands.SEEK_VIDEO_CMD_TEMPLATE.getCommandString(), WebPlayerConstants.PLAYERS_ON_PAGE ,100));
         playerAction.waitForSpinnerDisappear();
-        Assert.assertEquals(currentPlaybackTime.getText(), jse.executeScript(String.format(ApiCommands.Commands.GET_CURRENT_TIME_CMD.getCommandString(),
-                WebPlayerConstants.PLAYERS_ON_PAGE).toString()),
+        Assert.assertEquals(getTimeOfElementInSeconds(currentPlaybackTime), jse.executeScript(String.format(ApiCommands.Commands.GET_CURRENT_TIME_CMD.getCommandString(),
+                WebPlayerConstants.PLAYERS_ON_PAGE)),
                 "Current playback time and seeked time doesn't match. No delta");
     }
 
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void VolumeAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
@@ -36,7 +36,7 @@ public class Api extends WebPlayerBaseTest{
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void crossSegmentScrubAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         playerAction.waitForSpinnerDisappear();
