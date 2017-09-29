@@ -262,7 +262,7 @@ public class BaseWebPage {
             pageLoadWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(spiiner)));
         }
         else
-        {Log.info("spinner is gone");}
+           {Log.info("spinner is gone");}
     }
 
 }
