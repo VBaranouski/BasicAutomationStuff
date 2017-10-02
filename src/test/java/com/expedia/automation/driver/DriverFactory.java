@@ -1,10 +1,12 @@
 package com.expedia.automation.driver;
 
+import net.lightbody.bmp.BrowserMobProxyServer;
 import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
 
-    protected static WebDriver driver;
+    public static WebDriver driver;
+    public static BrowserMobProxyServer proxyServer;
 
     protected DriverFactory(WebDriver driver) {
         this.driver = driver;
@@ -21,6 +23,11 @@ public class DriverFactory {
                     break;
                 case REMOTE_DRIVER:
                     driver = RemoteDriver.createRemoteDriver();
+                    break;
+                case MOB_PROXY:
+                    driver = MobProxy.createMobProxy();
+                    break;
+
             }
         }
         return driver;
