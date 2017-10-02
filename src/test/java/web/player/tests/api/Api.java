@@ -12,7 +12,7 @@ import static web.player.core.BaseWebPage.*;
 
 public class Api extends WebPlayerBaseTest{
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void seekAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
@@ -24,7 +24,7 @@ public class Api extends WebPlayerBaseTest{
     }
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void VolumeAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
@@ -36,7 +36,7 @@ public class Api extends WebPlayerBaseTest{
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void crossSegmentScrubAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         playerAction.waitForSpinnerDisappear();
@@ -47,5 +47,4 @@ public class Api extends WebPlayerBaseTest{
                 "Current Playback time and scrubbed time doesn't match. No delta");
 
     }
-
 }

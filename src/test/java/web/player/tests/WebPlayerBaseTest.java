@@ -28,7 +28,7 @@ public class WebPlayerBaseTest {
 
     @BeforeMethod
     public WebDriver createDriver(){
-        driver = getInstance(driver, DriverTypes.DriverType.CHROME);
+        driver = getInstance(driver, DriverTypes.DriverType.MOB_PROXY);
         return driver;
     }
 
