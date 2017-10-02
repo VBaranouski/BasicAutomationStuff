@@ -22,7 +22,7 @@ public class xmlReaderWriter {
     }
 
     @XmlElement
-    public String getDescritpion() {
+    public String getDescription() {
         return description;
     }
 
@@ -47,7 +47,7 @@ public class xmlReaderWriter {
         JAXBContext context = JAXBContext.newInstance(xmlReaderWriter.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         xmlReaderWriter e = (xmlReaderWriter) unmarshaller.unmarshal(file);
-        System.out.println(e.getTitle() + ", " + e.getDescritpion());
+        System.out.println(e.getTitle() + ", " + e.getDescription());
 
     }
 

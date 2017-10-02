@@ -16,9 +16,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class MobProxy extends DriverFactory {
+public class BrowserMobProxy extends DriverFactory {
 
-    private MobProxy(WebDriver driver) {
+    private BrowserMobProxy(WebDriver driver) {
         super(driver);
     }
 
