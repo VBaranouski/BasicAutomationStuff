@@ -5,9 +5,10 @@ import org.testng.annotations.Test;
 
 public class proxyTests extends WebPlayerBaseTest{
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void mobProxy() {
-        BrowserMobProxy.createHarEntries();
+        BrowserMobProxy.getRequestList();
+
 
     }
 }
