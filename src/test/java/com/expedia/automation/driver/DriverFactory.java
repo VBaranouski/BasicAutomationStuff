@@ -25,7 +25,7 @@ public class DriverFactory {
                     driver = RemoteDriver.createRemoteDriver();
                     break;
                 case MOB_PROXY:
-                    driver = MobProxy.createMobProxy();
+                    driver = BrowserMobProxy.createMobProxy();
                     break;
 
             }
