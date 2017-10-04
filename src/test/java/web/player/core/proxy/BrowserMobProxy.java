@@ -1,4 +1,4 @@
-package com.expedia.automation.driver;
+package web.player.core.proxy;
 
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import web.player.core.driver.DriverFactory;
 
 import java.util.List;
 
@@ -19,15 +20,15 @@ public class BrowserMobProxy extends DriverFactory {
         super(driver);
     }
 
-    public String getResponse() {
+    public static String getResponse() {
         return response;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public static void setResponse(String response) {
+        BrowserMobProxy.response = response;
     }
 
-    public String response;
+    public static String response;
 
     private static final String CHROME_DRIVER = "webdriver.chrome.driver";
     private static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
@@ -42,9 +43,6 @@ public class BrowserMobProxy extends DriverFactory {
         System.setProperty(CHROME_DRIVER, CHROME_DRIVER_PATH);
         driver = new ChromeDriver(capability);
         proxyServer.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
-
-
-
         return driver;
     }
 
@@ -53,9 +51,7 @@ public class BrowserMobProxy extends DriverFactory {
         for (HarEntry entry : harEntries) {
             if (entry.getRequest().getUrl().toString().matches(".*media\\.mtvnservices\\.com\\/pmt\\/e1\\/access\\/index.*")) {
                 String response = removeCharacters(entry.getResponse().getContent().getText());
-                BrowserMobProxy bM = new BrowserMobProxy(driver);
-                bM.setResponse(response);
-                System.out.println(response);
+                BrowserMobProxy.setResponse(response);
 
             }
         }

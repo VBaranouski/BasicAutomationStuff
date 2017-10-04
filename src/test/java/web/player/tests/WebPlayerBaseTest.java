@@ -1,6 +1,6 @@
 package web.player.tests;
 
-import com.expedia.automation.driver.DriverTypes;
+import web.player.core.driver.DriverTypes;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -10,7 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import web.player.core.BaseWebPage;
 
-import static com.expedia.automation.driver.DriverFactory.getInstance;
+import static web.player.core.driver.DriverFactory.getInstance;
 
 public class WebPlayerBaseTest {
 

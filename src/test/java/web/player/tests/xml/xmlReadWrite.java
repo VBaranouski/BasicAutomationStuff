@@ -2,7 +2,7 @@ package web.player.tests.xml;
 
 import org.testng.annotations.Test;
 import web.player.tests.WebPlayerBaseTest;
-import web.player.xml.xmlReaderWriter;
+import web.player.other.xmlReaderWriter;
 
 public class xmlReadWrite extends WebPlayerBaseTest{
 

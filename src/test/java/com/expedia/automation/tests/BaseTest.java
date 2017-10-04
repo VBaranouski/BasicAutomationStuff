@@ -1,6 +1,6 @@
 package com.expedia.automation.tests;
 
-import com.expedia.automation.driver.DriverTypes;
+import web.player.core.driver.DriverTypes;
 import com.expedia.automation.pages.homepage.HomePage;
 import com.expedia.automation.pages.navigation.account.HeaderMenuAccount;
 import com.expedia.automation.pages.search.flights.FlightsTab;
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import static com.expedia.automation.driver.DriverFactory.getInstance;
+import static web.player.core.driver.DriverFactory.getInstance;
 
 public class BaseTest {
     protected WebDriver driver;

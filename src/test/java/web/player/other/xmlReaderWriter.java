@@ -1,4 +1,4 @@
-package web.player.xml;
+package web.player.other;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -13,8 +13,6 @@ public class xmlReaderWriter {
     private String title;
     private String description;
 
-
-    public xmlReaderWriter() { }
 
     public xmlReaderWriter(String title, String description) {
         this.description = description;

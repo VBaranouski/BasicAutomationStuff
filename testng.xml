@@ -32,7 +32,6 @@
             <class name="web.player.tests.gui.PausePlayVolume" />
             <class name="web.player.tests.gui.Scrubbing" />
             <class name="web.player.tests.api.Api" />
-            <class name="web.player.tests.xml.xmlReadWrite" />
             <class name="web.player.tests.proxyTests" />
         </classes>
     </test>

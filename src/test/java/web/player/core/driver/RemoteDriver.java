@@ -1,4 +1,4 @@
-package com.expedia.automation.driver;
+package web.player.core.driver;
 
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;

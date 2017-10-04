@@ -1,7 +1,8 @@
-package com.expedia.automation.driver;
+package web.player.core.driver;
 
 import net.lightbody.bmp.BrowserMobProxyServer;
 import org.openqa.selenium.WebDriver;
+import web.player.core.proxy.BrowserMobProxy;
 
 public class DriverFactory {
 

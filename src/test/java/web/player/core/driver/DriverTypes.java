@@ -1,4 +1,4 @@
-package com.expedia.automation.driver;
+package web.player.core.driver;
 
 public class DriverTypes {
 
