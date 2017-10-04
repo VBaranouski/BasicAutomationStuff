@@ -4,8 +4,6 @@ public class Feed {
 
     private String title;
 
-    public Feed(){}
-
     public Feed (String title){
         this.title = title;
     }
@@ -14,7 +12,4 @@ public class Feed {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
