@@ -1,7 +1,5 @@
 package web.player.constants;
 
-
-
 public class ApiCommands {
 
     public enum Commands {
@@ -17,9 +15,12 @@ public class ApiCommands {
         GET_PLAYER_READY_STATUS("return MTVNPlayer.getPlayers()[%d].ready"),
         GET_RENDITION_INDEX("return MTVNPlayer.getPlayers()[%d].metrics.getCurrentRenditionIndex();"),
         GET_CURRENT_SEGMENT_CMD("return MTVNPlayer.getPlayers()[%d].getContentMetadata().index;"),
-        GET_TEXT_FROM_NATIVE_TRACKS_ELEMENTS("return EdgePlayer.getPlayer().contentElement.textTracks[1].activeCues[%d].text;"),
-        GET_STARTTIME_FROM_NATIVE__TRACKS_ELEMENTS("return EdgePlayer.getPlayer().contentElement.textTracks[1].activeCues[%d].startTime"),
-        GET_ENDTIME_FROM_NATIVE_TRACKS_ELEMENTS("return EdgePlayer.getPlayer().contentElement.textTracks[1].activeCues[%d].endTime"),
+        GET_TEXT_FROM_NATIVE_TRACKS_ELEMENTS(
+                "return EdgePlayer.getPlayer().contentElement.textTracks[1].activeCues[%d].text;"),
+        GET_STARTTIME_FROM_NATIVE__TRACKS_ELEMENTS(
+                "return EdgePlayer.getPlayer().contentElement.textTracks[1].activeCues[%d].startTime"),
+        GET_ENDTIME_FROM_NATIVE_TRACKS_ELEMENTS(
+                "return EdgePlayer.getPlayer().contentElement.textTracks[1].activeCues[%d].endTime"),
         GET_AD_COUNT("return MTVNPlayer.getPlayers()[0].getAdMetadata().adCount"),
         GET_PLAY_STATUS("function la(){var a = $('.now_playing > div > a')[%d];"
                 + "{return window.getComputedStyle(a,':before').content;}} return la();"),
@@ -57,23 +58,28 @@ public class ApiCommands {
         AD_BLOCKER_STATUS_EXECUTE("player.bento.adBlockerStatus(true)"),
         AD_SKIPPED_PLAYER_BENTO("player.bento.adSkipped(0,{level: 40, message: 'error message test'})"),
         AD_BREAK_TERMINATED_TRUE_PLAYER_BENTO("player.bento.adBreakTerminated(true)"),
-        AD_ENABLE_DISABLEADGUI_STATE("EdgePlayer.getPlayer().bento.adStarted({disableAdGuiOnPlay: false, disableAdGui: true})"),
-        AD_ENABLE_DISABLEADGUIONPLAY_STATE("EdgePlayer.getPlayer().bento.adStarted({disableAdGuiOnPlay: true, disableAdGui: false})"),
+        AD_ENABLE_DISABLEADGUI_STATE(
+                "EdgePlayer.getPlayer().bento.adStarted({disableAdGuiOnPlay: false, disableAdGui: true})"),
+        AD_ENABLE_DISABLEADGUIONPLAY_STATE(
+                "EdgePlayer.getPlayer().bento.adStarted({disableAdGuiOnPlay: true, disableAdGui: false})"),
         GET_API_TIMING("return window.performance.now();"),
         SET_WRONG_BENTO("Bento.version=12345;"),
         SET_WRONG_ADS_PROFILEID("EdgePlayer.getPlayer().bento.adManifestRequest({profileId:1232343453},1);"),
         SET_INFO_LEVEL("EdgePlayer.log.setLevel(EdgePlayer.log.levels.INFO)"),
         SET_LANGUAGE("player.setLanguage(\"%s\")"),
         GET_READY_STATE("return document.readyState"),
-        GET_TEXT_FROM_EMBED_TEXTAREA_FIELD("return document.getElementsByClassName('edge-share-modal-message')[0].value"),
+        GET_TEXT_FROM_EMBED_TEXTAREA_FIELD(
+                "return document.getElementsByClassName('edge-share-modal-message')[0].value"),
         CLICK_BY_COORDINATES("document.elementFromPoint(%d, %d).click();");
 
         private String commandString;
 
-        Commands(final String commandString){
-            this.commandString = commandString;}
+        Commands(final String commandString) {
+            this.commandString = commandString;
+        }
 
         public String getCommandString() {
-            return commandString; }
+            return commandString;
         }
+    }
 }

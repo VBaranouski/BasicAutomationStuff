@@ -13,7 +13,6 @@ public class xmlReaderWriter {
     private String title;
     private String description;
 
-
     public xmlReaderWriter(String title, String description) {
         this.description = description;
         this.title = title;
@@ -39,7 +38,6 @@ public class xmlReaderWriter {
 
     }
 
-
     public static void readFromXml() throws Exception {
         File file = new File("xmlCreationTest.xml");
         JAXBContext context = JAXBContext.newInstance(xmlReaderWriter.class);
@@ -48,6 +46,5 @@ public class xmlReaderWriter {
         System.out.println(e.getTitle() + ", " + e.getDescription());
 
     }
-
 
 }

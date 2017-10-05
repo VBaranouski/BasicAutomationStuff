@@ -11,17 +11,14 @@ import static web.player.core.BaseWebPage.shareIcon;
 
 public class Share extends WebPlayerBaseTest {
 
-    @Test(enabled = false)
-    public void shareIconDisplayCheck() {
+  @Test(enabled = false)
+  public void shareIconDisplayCheck() {
 
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
-        elementWait.until(ExpectedConditions.visibilityOf(progressBar));
-        playerAction.openFullScreen();
-        elementWait.until(ExpectedConditions.visibilityOf(shareIcon));
-        playerAction.exitFullScreen();
-        Assert.assertFalse(shareIcon.isDisplayed());
-
-
-    }
-
+    baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
+    elementWait.until(ExpectedConditions.visibilityOf(progressBar));
+    playerAction.openFullScreen();
+    elementWait.until(ExpectedConditions.visibilityOf(shareIcon));
+    playerAction.exitFullScreen();
+    Assert.assertFalse(shareIcon.isDisplayed());
+  }
 }

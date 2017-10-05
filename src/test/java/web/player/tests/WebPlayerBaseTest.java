@@ -23,17 +23,14 @@ public class WebPlayerBaseTest {
     public static Wait crossSegmentScrubWait;
     public JavascriptExecutor jse;
 
-
-
-
     @BeforeMethod
-    public WebDriver createDriver(){
-        driver = getInstance(driver, DriverTypes.DriverType.MOB_PROXY);
+    public WebDriver createDriver() {
+        driver = getInstance(driver, DriverTypes.DriverType.CHROME);
         return driver;
     }
 
     @BeforeMethod
-    public void createObjects(){
+    public void createObjects() {
         //wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
         elementWait = new WebDriverWait(driver, 5);
         pageLoadWait = new WebDriverWait(driver, 30);
@@ -41,11 +38,11 @@ public class WebPlayerBaseTest {
         baseWebPage = new BaseWebPage(driver);
         playerAction = new BaseWebPage(driver);
         scrubAction = new Actions(driver);
-        jse = (JavascriptExecutor)driver;
+        jse = (JavascriptExecutor) driver;
     }
 
     @AfterMethod
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
         driver = null;
     }

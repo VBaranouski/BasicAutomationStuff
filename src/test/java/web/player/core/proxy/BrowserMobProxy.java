@@ -49,17 +49,19 @@ public class BrowserMobProxy extends DriverFactory {
     public static void getPmtResponse() {
         List<HarEntry> harEntries = proxyServer.getHar().getLog().getEntries();
         for (HarEntry entry : harEntries) {
-            if (entry.getRequest().getUrl().toString().matches(".*media\\.mtvnservices\\.com\\/pmt\\/e1\\/access\\/index.*")) {
+            if (entry
+                    .getRequest()
+                    .getUrl()
+                    .toString()
+                    .matches(".*media\\.mtvnservices\\.com\\/pmt\\/e1\\/access\\/index.*")) {
                 String response = removeCharacters(entry.getResponse().getContent().getText());
                 BrowserMobProxy.setResponse(response);
-
             }
         }
 
         driver.quit();
         proxyServer.stop();
     }
-
 
     private static String removeCharacters(String response) {
         String temp = response;
@@ -77,6 +79,4 @@ public class BrowserMobProxy extends DriverFactory {
         temp = temp.trim();
         return temp;
     }
-
 }
-

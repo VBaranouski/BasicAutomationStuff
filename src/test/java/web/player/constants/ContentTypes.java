@@ -2,7 +2,7 @@ package web.player.constants;
 
 public class ContentTypes {
 
-    public enum ContentType{
+    public enum ContentType {
         FULL_EPISODE,
         CLIP,
         LIVE,

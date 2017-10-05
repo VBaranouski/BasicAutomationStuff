@@ -8,7 +8,7 @@ public class Chrome extends DriverFactory {
     public static final String CHROME_DRIVER = "webdriver.chrome.driver";
     public static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
 
-    private Chrome (WebDriver driver) {
+    private Chrome(WebDriver driver) {
         super(driver);
     }
 

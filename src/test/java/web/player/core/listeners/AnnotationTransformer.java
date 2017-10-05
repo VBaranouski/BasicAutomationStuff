@@ -11,21 +11,17 @@ public class AnnotationTransformer implements IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class aClass, Constructor constructor, Method testMethod) {
 
-       // annotation.setRetryAnalyzer(RetryAnalyzer.class);
-       // annotation.setEnabled(false);
+        // annotation.setRetryAnalyzer(RetryAnalyzer.class);
+        // annotation.setEnabled(false);
 
-        if (testMethod.getName().equals("flightSearchViaDataProvider"))
-        {
+        if (testMethod.getName().equals("flightSearchViaDataProvider")) {
             annotation.setEnabled(false);
 
-        }
-
-        else if (testMethod.getName().equals("flightSearchViaParameters"))
-        {
+        } else if (testMethod.getName().equals("flightSearchViaParameters")) {
             annotation.setEnabled(false);
 
         }
     }
 
-    }
+}
 
