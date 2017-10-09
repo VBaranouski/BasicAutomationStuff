@@ -14,24 +14,44 @@ import web.player.core.driver.DriverFactory;
 
 import java.util.List;
 
+import static web.player.constants.WebPlayerConstants.CHROME_DRIVER;
+import static web.player.constants.WebPlayerConstants.CHROME_DRIVER_PATH;
+
 public class BrowserMobProxy extends DriverFactory {
 
     public BrowserMobProxy(WebDriver driver) {
         super(driver);
     }
 
-    public static String getResponse() {
-        return response;
+    private static String pmtResponse;
+
+    private static String mediaGenResponse;
+
+    public static String getMediaGenResponse() {
+        return mediaGenResponse;
     }
 
-    public static void setResponse(String response) {
-        BrowserMobProxy.response = response;
+    public static void setMediaGenResponse(String mediaGenResponse) {
+        BrowserMobProxy.mediaGenResponse = mediaGenResponse;
     }
 
-    public static String response;
+    public static String getPmtResponse() {
+        return pmtResponse;
+    }
 
-    private static final String CHROME_DRIVER = "webdriver.chrome.driver";
-    private static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
+    public static void setPmtResponse(String response) {
+        BrowserMobProxy.pmtResponse = response;
+    }
+
+    private static String videoStartTimeRequest;
+
+    public static void setVideoStartTimeRequest(String videoStartTimeRequest) {
+        BrowserMobProxy.videoStartTimeRequest = videoStartTimeRequest;
+    }
+
+    public static String getVideoStartTimeRequest() {
+        return videoStartTimeRequest;
+    }
 
     public static WebDriver createMobProxy() {
 
@@ -46,16 +66,59 @@ public class BrowserMobProxy extends DriverFactory {
         return driver;
     }
 
-    public static void getPmtResponse() {
+    public static void getPmtResponseJson() {
         List<HarEntry> harEntries = proxyServer.getHar().getLog().getEntries();
+
         for (HarEntry entry : harEntries) {
             if (entry
                     .getRequest()
                     .getUrl()
                     .toString()
                     .matches(".*media\\.mtvnservices\\.com\\/pmt\\/e1\\/access\\/index.*")) {
-                String response = removeCharacters(entry.getResponse().getContent().getText());
-                BrowserMobProxy.setResponse(response);
+                pmtResponse = removeCharacters(entry.getResponse().getContent().getText());
+                BrowserMobProxy.setPmtResponse(pmtResponse);
+            }
+        }
+
+        driver.quit();
+        proxyServer.stop();
+    }
+
+    public static void getVideoStartTimeBeacon() {
+        List<HarEntry> harEntries = proxyServer.getHar().getLog().getEntries();
+
+        for (HarEntry entry : harEntries) {
+            if (entry
+                    .getRequest()
+                    .getUrl()
+                    .toString()
+                    .matches(".*mb.mtvnservices.com\\/data\\/collect\\/v1\\/*.__t=vidperf-dev.__mb_addHeader=true")) {
+
+                videoStartTimeRequest = entry.getRequest().getPostData().getText();
+                // videoStartTimeRequest = entry.getResponse().getContent().getText();
+                // BrowserMobProxy.setVideoStartTimeRequest(videoStartTimeRequest);
+                System.out.println(videoStartTimeRequest);
+
+            }
+        }
+
+        driver.quit();
+        proxyServer.stop();
+    }
+
+    public static void getMediaGenResponseJson() {
+        List<HarEntry> harEntries = proxyServer.getHar().getLog().getEntries();
+
+        for (HarEntry entry : harEntries) {
+            if (entry
+                    .getRequest()
+                    .getUrl()
+                    .toString()
+                    .matches(".*media-utils\\.mtvnservices\\.com\\/services\\/MediaGenerator\\/mgid.*")) {
+
+                mediaGenResponse = removeCharacters(entry.getResponse().getContent().getText());
+                BrowserMobProxy.setMediaGenResponse(mediaGenResponse);
+
             }
         }
 

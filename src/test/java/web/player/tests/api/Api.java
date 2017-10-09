@@ -12,7 +12,7 @@ import static web.player.core.BaseWebPage.*;
 
 public class Api extends WebPlayerBaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void seekAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
@@ -35,7 +35,7 @@ public class Api extends WebPlayerBaseTest {
                 "Current playback time and seeked time doesn't match. Delta 3 sec");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void crossSegmentScrubAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));

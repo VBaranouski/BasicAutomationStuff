@@ -1,6 +1,5 @@
 package web.player.tests;
 
-import web.player.core.driver.DriverTypes;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import web.player.core.BaseWebPage;
-
+import web.player.core.driver.DriverTypes;
 import static web.player.core.driver.DriverFactory.getInstance;
 
 public class WebPlayerBaseTest {
@@ -25,7 +24,8 @@ public class WebPlayerBaseTest {
 
     @BeforeMethod
     public WebDriver createDriver() {
-        driver = getInstance(driver, DriverTypes.DriverType.CHROME);
+        driver = getInstance(driver, DriverTypes.DriverType.MOB_PROXY);
+       // driver = getInstance(driver, DriverTypes.DriverType.CHROME);
         return driver;
     }
 

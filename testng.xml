@@ -32,7 +32,9 @@
             <class name="web.player.tests.gui.PausePlayVolume" />
             <class name="web.player.tests.gui.Scrubbing" />
             <class name="web.player.tests.api.Api" />
-            <class name="web.player.tests.pmt.pmtParse" />
+            <class name="web.player.tests.proxyTests.MediaGenTests" />
+            <class name="web.player.tests.proxyTests.MegaBeaconTests" />
+            <class name="web.player.tests.proxyTests.PmtTests" />
         </classes>
     </test>
 

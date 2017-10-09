@@ -3,10 +3,10 @@ package web.player.core.driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Chrome extends DriverFactory {
+import static web.player.constants.WebPlayerConstants.CHROME_DRIVER;
+import static web.player.constants.WebPlayerConstants.CHROME_DRIVER_PATH;
 
-    public static final String CHROME_DRIVER = "webdriver.chrome.driver";
-    public static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
+public class Chrome extends DriverFactory {
 
     private Chrome(WebDriver driver) {
         super(driver);

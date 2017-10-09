@@ -2,6 +2,10 @@ package web.player.constants;
 
 public class WebPlayerConstants {
 
+    public static final String CHROME_DRIVER = "webdriver.chrome.driver";
+
+    public static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
+
     public static final String FULL_EPIDOSE_URL = "http://bit.ly/2x480rL";
 
     public static final String CLIP_URL = "http://bit.ly/2fF4haX";
@@ -12,9 +16,8 @@ public class WebPlayerConstants {
 
     public static final String CC_DEFAULT_COLOR = "rgba(255, 255, 255, 1)";
 
-    public static final String CC_DEFAULT_FONT_FAMILY =
-            "\"Deja Vu Sans Mono\"" + ", " + "\"Lucida Console\"" + ", " + "Monaco" + ", " + "Consolas" + ", " +
-                    "\"PT Mono\"" + ", " + "monospace";
+    public static final String CC_DEFAULT_FONT_FAMILY = "\"Deja Vu Sans Mono\"" + ", " + "\"Lucida Console\""
+            + ", " + "Monaco" + ", " + "Consolas" + ", " + "\"PT Mono\"" + ", " + "monospace";
 
     public static final String CC_DEFAULT_FONT_SIZE = "16.8px";
 

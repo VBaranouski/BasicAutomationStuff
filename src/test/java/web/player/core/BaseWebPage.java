@@ -1,5 +1,6 @@
 package web.player.core;
 
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,9 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import web.player.bean.mediagen.MediaGen;
+import web.player.bean.pmt.Pmt;
 import web.player.constants.ApiCommands;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
+import web.player.core.proxy.BrowserMobProxy;
 
 import static web.player.tests.WebPlayerBaseTest.*;
 
@@ -328,6 +332,20 @@ public class BaseWebPage {
         } else {
             Log.trace("Playback started");
         }
+    }
+
+    public Pmt parsePmtResponseBody() {
+        BrowserMobProxy.getPmtResponseJson();
+        Gson gson = new Gson();
+        Pmt pmt = gson.fromJson(BrowserMobProxy.getPmtResponse(), Pmt.class);
+        return pmt;
+    }
+
+    public MediaGen parseMediaGenResponseBody() {
+        BrowserMobProxy.getMediaGenResponseJson();
+        Gson gson = new Gson();
+        MediaGen mediaGen = gson.fromJson(BrowserMobProxy.getMediaGenResponse(), MediaGen.class);
+        return mediaGen ;
     }
 
 }
