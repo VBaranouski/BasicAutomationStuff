@@ -1,4 +1,4 @@
-package web.player.xml;
+package web.player.other;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -12,9 +12,6 @@ import java.io.FileOutputStream;
 public class xmlReaderWriter {
     private String title;
     private String description;
-
-
-    public xmlReaderWriter() { }
 
     public xmlReaderWriter(String title, String description) {
         this.description = description;
@@ -41,7 +38,6 @@ public class xmlReaderWriter {
 
     }
 
-
     public static void readFromXml() throws Exception {
         File file = new File("xmlCreationTest.xml");
         JAXBContext context = JAXBContext.newInstance(xmlReaderWriter.class);
@@ -50,6 +46,5 @@ public class xmlReaderWriter {
         System.out.println(e.getTitle() + ", " + e.getDescription());
 
     }
-
 
 }

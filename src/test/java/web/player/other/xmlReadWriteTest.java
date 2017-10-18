@@ -1,10 +1,10 @@
-package web.player.tests.xml;
+package web.player.other;
 
 import org.testng.annotations.Test;
 import web.player.tests.WebPlayerBaseTest;
-import web.player.xml.xmlReaderWriter;
+import web.player.other.xmlReaderWriter;
 
-public class xmlReadWrite extends WebPlayerBaseTest{
+public class xmlReadWriteTest extends WebPlayerBaseTest{
 
   @Test (enabled = false, priority = 1)
     public void savingToXml() throws Exception {

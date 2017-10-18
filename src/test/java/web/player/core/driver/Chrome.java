@@ -1,14 +1,14 @@
-package com.expedia.automation.driver;
+package web.player.core.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static web.player.constants.WebPlayerConstants.CHROME_DRIVER;
+import static web.player.constants.WebPlayerConstants.CHROME_DRIVER_PATH;
+
 public class Chrome extends DriverFactory {
 
-    public static final String CHROME_DRIVER = "webdriver.chrome.driver";
-    public static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
-
-    private Chrome (WebDriver driver) {
+    private Chrome(WebDriver driver) {
         super(driver);
     }
 

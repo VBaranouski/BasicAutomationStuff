@@ -6,9 +6,9 @@
     <parameter name="adults"  value="2"/>
 
     <listeners>
-        <listener class-name="com.expedia.automation.listeners.SuiteListener" />
-        <listener class-name="com.expedia.automation.listeners.TestListener" />
-        <listener class-name="com.expedia.automation.listeners.AnnotationTransformer" />
+        <listener class-name="web.player.core.listeners.AnnotationTransformer" />
+        <listener class-name="web.player.core.listeners.TestListener" />
+        <listener class-name="web.player.core.listeners.SuiteListener" />
     </listeners>
         <test name="ExpediaFull" preserve-order = "true">
           <groups>
@@ -32,8 +32,9 @@
             <class name="web.player.tests.gui.PausePlayVolume" />
             <class name="web.player.tests.gui.Scrubbing" />
             <class name="web.player.tests.api.Api" />
-            <class name="web.player.tests.xml.xmlReadWrite" />
-            <class name="web.player.tests.proxyTests" />
+            <class name="web.player.tests.proxyTests.MediaGenTests" />
+            <class name="web.player.tests.proxyTests.MegaBeaconTests" />
+            <class name="web.player.tests.proxyTests.PmtTests" />
         </classes>
     </test>
 

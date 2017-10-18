@@ -20,8 +20,5 @@ public class Share extends WebPlayerBaseTest {
         elementWait.until(ExpectedConditions.visibilityOf(shareIcon));
         playerAction.exitFullScreen();
         Assert.assertFalse(shareIcon.isDisplayed());
-
-
     }
-
 }

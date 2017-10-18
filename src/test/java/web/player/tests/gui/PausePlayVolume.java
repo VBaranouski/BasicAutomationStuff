@@ -10,7 +10,6 @@ import static web.player.core.BaseWebPage.*;
 
 public class PausePlayVolume extends WebPlayerBaseTest {
 
-
     @Test(enabled = false)
     public void pauseAndPlayCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
@@ -23,7 +22,6 @@ public class PausePlayVolume extends WebPlayerBaseTest {
         Assert.assertEquals(currentPlaybackTime.getText(), "00:05");
     }
 
-
     @Test(enabled = false)
     public void volumeCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.CLIP);
@@ -32,7 +30,6 @@ public class PausePlayVolume extends WebPlayerBaseTest {
         playerAction.mutePlayback();
         playerAction.unmutePlayback();
     }
-
 
     @Test(enabled = false)
     public void fullScreenTest() {
@@ -45,7 +42,5 @@ public class PausePlayVolume extends WebPlayerBaseTest {
         playerAction.exitFullScreen();
         Assert.assertFalse(titleMetadata.isDisplayed());
     }
-
-
 
 }

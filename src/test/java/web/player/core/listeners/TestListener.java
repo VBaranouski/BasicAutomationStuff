@@ -1,4 +1,4 @@
-package com.expedia.automation.listeners;
+package web.player.core.listeners;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -18,7 +18,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println(iTestResult.getName()+ ": failed!");
+        System.out.println(iTestResult.getName() + ": failed!");
     }
 
     @Override
