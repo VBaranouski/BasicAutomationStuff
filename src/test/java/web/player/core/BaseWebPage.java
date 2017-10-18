@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import web.player.bean.mediagen.MediaGen;
 import web.player.bean.pmt.Pmt;
 import web.player.constants.ApiCommands;
 import web.player.constants.ContentTypes;
@@ -82,6 +81,9 @@ public class BaseWebPage {
     // ads:
 
     @FindBy(className = " edge-gui-ad-metadata")
+    public static WebElement adGui;
+
+    @FindBy (className = "edge-gui-ad-metadata-caption")
     public static WebElement adGuiMetadata;
 
     // Closed Captions:
@@ -262,7 +264,7 @@ public class BaseWebPage {
             int xScrubber = doubleValueOfCuePoint.intValue();
             int initialScrubberLocation = scrubber.getLocation().x;
 
-            scrubAction.dragAndDropBy(scrubber, xScrubber + 10, 0).release().perform();
+            action.dragAndDropBy(scrubber, xScrubber + 10, 0).release().perform();
             crossSegmentScrubWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
 
             int afterScrubScrubberLocation = scrubber.getLocation().x;
@@ -275,8 +277,7 @@ public class BaseWebPage {
             Log.info(
                     "Cue points are not found. This is not a Full Episode or Seamless mode is enabled. Scrubbing into the middle");
             int initialScrubberLocation = scrubber.getLocation().x;
-
-            scrubAction
+            action
                     .dragAndDropBy(scrubber, (progressBar.getSize().width - scrubber.getLocation().x) / 2, 0)
                     .release()
                     .perform();
@@ -341,11 +342,31 @@ public class BaseWebPage {
         return pmt;
     }
 
-    public MediaGen parseMediaGenResponseBody() {
+    public web.player.bean.mediagen.Package parseMediaGenResponseBody() {
         BrowserMobProxy.getMediaGenResponseJson();
         Gson gson = new Gson();
-        MediaGen mediaGen = gson.fromJson(BrowserMobProxy.getMediaGenResponse(), MediaGen.class);
-        return mediaGen ;
+        web.player.bean.mediagen.Package aPackage = gson
+                .fromJson(BrowserMobProxy.getMediaGenResponse(), web.player.bean.mediagen.Package.class);
+        return aPackage;
+    }
+
+    public static void checkAdGuiMetadata() {
+        if (adGui.isDisplayed()) {
+            if (!adGuiMetadata.getText().isEmpty()) {
+                System.out.println(adGuiMetadata.getText() + "1");
+
+            } else {
+                pageLoadWait.until(ExpectedConditions.textToBePresentInElement(adGuiMetadata, "AD 1 OF 2 - YOUR"));
+                System.out.println(adGuiMetadata.getText() + " 2");
+            }
+        } else {
+            System.out.println("No ad");
+        }
+
+    }
+
+    public static void pointMouseOverGui() {
+        action.clickAndHold(playersFrame).build().perform();
     }
 
 }

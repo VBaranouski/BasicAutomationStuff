@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Package {
 
+
+    public Package(){}
+
     private String version;
 
     private Video video;

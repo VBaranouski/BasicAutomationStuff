@@ -79,11 +79,24 @@ public class Api extends WebPlayerBaseTest {
                 "Volume levels doesn't match");
     }
 
-    @Test(enabled = false)
-    public void playbackLoadcheck() {
+    @Test(enabled = true)
+    public void adCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        playerAction.waitForPlaybackStart();
+        jse.executeScript(String.format(ApiCommands.Commands.PAUSE_VIDEO_CMD.getCommandString(), WebPlayerConstants.PLAYERS_ON_PAGE));
+        //pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
+        //playerAction.waitForPlaybackStart();
+        playerAction.checkAdGuiMetadata();
 
     }
+
+    @Test (enabled = false)
+    public void checkAdCount(){
+        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
+        System.out.println(
+        jse.executeScript(String.format(ApiCommands.Commands.GET_AD_COUNT.getCommandString(),WebPlayerConstants.PLAYERS_ON_PAGE))
+        );
+
+
+    }
+
 }

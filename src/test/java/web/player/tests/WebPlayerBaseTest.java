@@ -16,7 +16,7 @@ public class WebPlayerBaseTest {
     protected WebDriver driver;
     protected BaseWebPage baseWebPage;
     protected BaseWebPage playerAction;
-    public static Actions scrubAction;
+    public static Actions action;
     public static Wait elementWait;
     public static Wait pageLoadWait;
     public static Wait crossSegmentScrubWait;
@@ -37,7 +37,7 @@ public class WebPlayerBaseTest {
         crossSegmentScrubWait = new WebDriverWait(driver, 150);
         baseWebPage = new BaseWebPage(driver);
         playerAction = new BaseWebPage(driver);
-        scrubAction = new Actions(driver);
+        action = new Actions(driver);
         jse = (JavascriptExecutor) driver;
     }
 

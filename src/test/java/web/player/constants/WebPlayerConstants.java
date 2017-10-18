@@ -6,7 +6,8 @@ public class WebPlayerConstants {
 
     public static final String CHROME_DRIVER_PATH = "/Users/Vlad/Documents/Automation/chromedriver";
 
-    public static final String FULL_EPIDOSE_URL = "http://bit.ly/2x480rL";
+    public static final String FULL_EPIDOSE_URL = "http://bit.ly/2gARiHK"; //with ads
+  //  public static final String FULL_EPIDOSE_URL = "http://bit.ly/2x480rL"; //without ads
 
     public static final String CLIP_URL = "http://bit.ly/2fF4haX";
 
