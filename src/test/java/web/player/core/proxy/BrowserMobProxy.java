@@ -85,6 +85,7 @@ public class BrowserMobProxy extends DriverFactory {
     }
 
     public static void getVideoStartTimeBeacon() {
+
         List<HarEntry> harEntries = proxyServer.getHar().getLog().getEntries();
 
         for (HarEntry entry : harEntries) {
@@ -92,11 +93,10 @@ public class BrowserMobProxy extends DriverFactory {
                     .getRequest()
                     .getUrl()
                     .toString()
-                    .matches(".*mb.mtvnservices.com\\/data\\/collect\\/v1\\/*.__t=vidperf-dev.__mb_addHeader=true")) {
-
+                    .matches(".*mb.mtvnservices.com\\/data\\/collect\\/v1\\/*.__t=vidperf-dev.__mb_addHeader=true")
+            //&& entry.getRequest().getPostData().getText().contains("videoStartTime")
+            )  {
                 videoStartTimeRequest = entry.getRequest().getPostData().getText();
-                // videoStartTimeRequest = entry.getResponse().getContent().getText();
-                // BrowserMobProxy.setVideoStartTimeRequest(videoStartTimeRequest);
                 System.out.println(videoStartTimeRequest);
 
             }

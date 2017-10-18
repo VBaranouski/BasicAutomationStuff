@@ -12,8 +12,8 @@ import static web.player.core.driver.DriverFactory.proxyServer;
 
 public class MegaBeaconTests extends WebPlayerBaseTest {
 
-    @Test(enabled = false)
-    public void MBtests() {
+    @Test(enabled = true)
+    public void mBtests() {
         proxyServer.newHar(WebPlayerConstants.FULL_EPIDOSE_URL);
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));

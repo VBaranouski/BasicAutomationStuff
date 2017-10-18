@@ -79,7 +79,7 @@ public class Api extends WebPlayerBaseTest {
                 "Volume levels doesn't match");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void adCheck() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
         jse.executeScript(String.format(ApiCommands.Commands.PAUSE_VIDEO_CMD.getCommandString(), WebPlayerConstants.PLAYERS_ON_PAGE));
