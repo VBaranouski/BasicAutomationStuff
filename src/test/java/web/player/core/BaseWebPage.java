@@ -1,6 +1,5 @@
 package web.player.core;
 
-import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,11 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import web.player.bean.pmt.Pmt;
 import web.player.constants.ApiCommands;
 import web.player.constants.ContentTypes;
 import web.player.constants.WebPlayerConstants;
-import web.player.core.proxy.BrowserMobProxy;
 
 import static web.player.tests.WebPlayerBaseTest.*;
 
@@ -20,7 +17,7 @@ public class BaseWebPage {
 
     public WebDriver driver;
 
-    private static Logger Log = Logger.getLogger(BaseWebPage.class);
+    private static Logger log = Logger.getLogger(BaseWebPage.class);
 
     public BaseWebPage(WebDriver driver) {
         this.driver = driver;
@@ -66,8 +63,8 @@ public class BaseWebPage {
     @FindBy(className = "edge-gui-progress-bar")
     public static WebElement progressBar;
 
-    @FindBy(className = "edge-gui")
-    public static WebElement playersFrame;
+    @FindBy(xpath = ".//div[contains(@class, 'edge-gui')]")
+    public static WebElement toolBar;
 
     @FindBy(className = "edge-gui-progress-bar-thumb")
     public static WebElement scrubber;
@@ -80,10 +77,10 @@ public class BaseWebPage {
 
     // ads:
 
-    @FindBy(className = " edge-gui-ad-metadata")
+    @FindBy(className = "edge-player-ads-element")
     public static WebElement adGui;
 
-    @FindBy (className = "edge-gui-ad-metadata-caption")
+    @FindBy(className = "edge-gui-ad-metadata-caption")
     public static WebElement adGuiMetadata;
 
     // Closed Captions:
@@ -130,7 +127,7 @@ public class BaseWebPage {
     public static WebElement ccFontColorRed;
 
     @FindBy(className = "edge-spinner-icon")
-    public static WebElement spiiner;
+    public static WebElement spinner;
 
     //
 
@@ -157,7 +154,7 @@ public class BaseWebPage {
         if (playButton.isDisplayed()) {
             playButton.click();
         } else {
-            Log.error("Play button is not visible. May be GUI is not loaded");
+            log.error("Play button is not visible. May be GUI is not loaded");
         }
     }
 
@@ -166,7 +163,7 @@ public class BaseWebPage {
     }
 
     public void openFullScreen() {
-        Log.info("Opening FS");
+        log.info("Opening FS");
         elementWait.until(ExpectedConditions.visibilityOf(fullScreenIcon));
         fullScreenIcon.click();
     }
@@ -187,7 +184,7 @@ public class BaseWebPage {
         if (settingsIcon.isDisplayed()) {
             settingsIcon.click();
         } else {
-            Log.info("no closed captions for this video");
+            log.info("no closed captions for this video");
         }
     }
 
@@ -196,11 +193,11 @@ public class BaseWebPage {
     }
 
     public void showClosedCaptions() {
-        Log.info("Enabling Closed Captions");
+        log.info("Enabling Closed Captions");
         if (closedCaptionsIcon.isDisplayed()) {
             closedCaptionsIcon.click();
         } else {
-            Log.info("Closed Captions is not displayed. Waiting for the icon to be clickable");
+            log.info("Closed Captions is not displayed. Waiting for the icon to be clickable");
             elementWait.until(ExpectedConditions.visibilityOf(closedCaptionsIcon));
             closedCaptionsIcon.click();
         }
@@ -211,7 +208,7 @@ public class BaseWebPage {
     }
 
     public void selectSmallFontSize() {
-        Log.info("Select Small Font Size");
+        log.info("Select Small Font Size");
         if (ccFontSize.isDisplayed()) {
             ccFontSize.click();
         } else {
@@ -233,10 +230,10 @@ public class BaseWebPage {
     }
 
     public void selectRedColor() {
-        Log.info("Click on Font default color");
+        log.info("Click on Font default color");
         elementWait.until(ExpectedConditions.visibilityOf(ccFontColor));
         ccFontColor.click();
-        Log.info("Select Font Red color");
+        log.info("Select Font Red color");
         elementWait.until(ExpectedConditions.visibilityOf(ccFontColorRed));
         ccFontColorRed.click();
         settingsFontColorBackButton.click();
@@ -256,7 +253,7 @@ public class BaseWebPage {
 
         if (!cuePoints.getCssValue("display").equals("none")) {
             elementWait.until(ExpectedConditions.visibilityOf(firstCuePoint));
-            Log.info("CuePoints are found. Scrubbing to the second segment...");
+            log.info("CuePoints are found. Scrubbing to the second segment...");
 
             Double doubleValueOfCuePoint =
                     new Double(
@@ -274,7 +271,7 @@ public class BaseWebPage {
                             * (afterScrubScrubberLocation - initialScrubberLocation)
                             / (progressBar.getSize().width));
         } else {
-            Log.info(
+            log.info(
                     "Cue points are not found. This is not a Full Episode or Seamless mode is enabled. Scrubbing into the middle");
             int initialScrubberLocation = scrubber.getLocation().x;
             action
@@ -298,11 +295,11 @@ public class BaseWebPage {
     }
 
     public void waitForSpinnerDisappear() {
-        if (spiiner.isDisplayed()) {
-            Log.info("Waiting for spinner disappearing...");
-            pageLoadWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(spiiner)));
+        if (spinner.isDisplayed()) {
+            log.info("Waiting for spinner disappearing...");
+            pageLoadWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(spinner)));
         } else {
-            Log.info("spinner is gone");
+            log.info("spinner is gone");
         }
     }
 
@@ -315,7 +312,7 @@ public class BaseWebPage {
         Double startTime = Double.valueOf(currentTime);
         Thread tread = new Thread();
         try {
-            tread.sleep(1000);
+            tread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -331,42 +328,29 @@ public class BaseWebPage {
                 e.printStackTrace();
             }
         } else {
-            Log.trace("Playback started");
+            log.info("Playback has started");
         }
     }
 
-    public Pmt parsePmtResponseBody() {
-        BrowserMobProxy.getPmtResponseJson();
-        Gson gson = new Gson();
-        Pmt pmt = gson.fromJson(BrowserMobProxy.getPmtResponse(), Pmt.class);
-        return pmt;
-    }
-
-    public web.player.bean.mediagen.Package parseMediaGenResponseBody() {
-        BrowserMobProxy.getMediaGenResponseJson();
-        Gson gson = new Gson();
-        web.player.bean.mediagen.Package aPackage = gson
-                .fromJson(BrowserMobProxy.getMediaGenResponse(), web.player.bean.mediagen.Package.class);
-        return aPackage;
-    }
-
-    public static void checkAdGuiMetadata() {
+    public static void checkAdPlayback() {
         if (adGui.isDisplayed()) {
-            if (!adGuiMetadata.getText().isEmpty()) {
-                System.out.println(adGuiMetadata.getText() + "1");
+            if (adGuiMetadata.getText().isEmpty() || !adGuiMetadata.getText()
+                    .contains("YOUR CONTENT WILL RESUME SHORTLY")) {
+                log.info("No pre-roll or mid-roll ads");
 
             } else {
-                pageLoadWait.until(ExpectedConditions.textToBePresentInElement(adGuiMetadata, "AD 1 OF 2 - YOUR"));
-                System.out.println(adGuiMetadata.getText() + " 2");
+                //adPlaybackWait.until(ExpectedConditions.textToBePresentInElement(adGuiMetadata, "AD 1 OF 2 - YOUR"));
+                log.info("Ad has started, waiting for ad to finish");
+                adPlaybackWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(adGui)));
+                log.info("Ad is finished");
             }
         } else {
-            System.out.println("No ad");
+            log.info("No pre-roll or mid-roll ads");
         }
-
     }
 
-    public static void pointMouseOverGui() {
-        action.clickAndHold(playersFrame).build().perform();
+    public static void pointMouseOverAdGui() {
+        action.clickAndHold(adGui).build().perform();
     }
 
 }

@@ -1,5 +1,6 @@
 package web.player.core.proxy;
 
+import com.google.gson.Gson;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
 import net.lightbody.bmp.core.har.HarEntry;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import web.player.bean.pmt.Pmt;
 import web.player.core.driver.DriverFactory;
 
 import java.util.List;
@@ -56,13 +58,15 @@ public class BrowserMobProxy extends DriverFactory {
     public static WebDriver createMobProxy() {
 
         proxyServer = new BrowserMobProxyServer();
+        proxyServer.setTrustAllServers(true);
+
         proxyServer.start(0);
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxyServer);
         DesiredCapabilities capability = new DesiredCapabilities();
         capability.setCapability(CapabilityType.PROXY, seleniumProxy);
         System.setProperty(CHROME_DRIVER, CHROME_DRIVER_PATH);
         driver = new ChromeDriver(capability);
-        proxyServer.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+        proxyServer.enableHarCaptureTypes(CaptureType.getAllContentCaptureTypes());
         return driver;
     }
 
@@ -94,7 +98,7 @@ public class BrowserMobProxy extends DriverFactory {
                     .getUrl()
                     .toString()
                     .matches(".*mb.mtvnservices.com\\/data\\/collect\\/v1\\/*.__t=vidperf-dev.__mb_addHeader=true")
-            //&& entry.getRequest().getPostData().getText().contains("videoStartTime")
+            && entry.getRequest().getPostData().getText().contains("videoError")
             )  {
                 videoStartTimeRequest = entry.getRequest().getPostData().getText();
                 System.out.println(videoStartTimeRequest);
@@ -142,4 +146,21 @@ public class BrowserMobProxy extends DriverFactory {
         temp = temp.trim();
         return temp;
     }
+
+    public static Pmt parsePmtResponseBody() {
+        BrowserMobProxy.getPmtResponseJson();
+        Gson gson = new Gson();
+        Pmt pmt = gson.fromJson(BrowserMobProxy.getPmtResponse(), Pmt.class);
+        return pmt;
+    }
+
+    public static web.player.bean.mediagen.Package parseMediaGenResponseBody() {
+        BrowserMobProxy.getMediaGenResponseJson();
+        Gson gson = new Gson();
+        web.player.bean.mediagen.Package aPackage = gson
+                .fromJson(BrowserMobProxy.getMediaGenResponse(), web.player.bean.mediagen.Package.class);
+        return aPackage;
+    }
+
+
 }

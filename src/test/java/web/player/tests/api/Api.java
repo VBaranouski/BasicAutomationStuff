@@ -35,18 +35,18 @@ public class Api extends WebPlayerBaseTest {
                 "Current playback time and seeked time doesn't match. Delta 3 sec");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void crossSegmentScrubAPI() {
         baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        playerAction.waitForSpinnerDisappear();
+        playerAction.checkAdPlayback();
         playerAction.waitForPlaybackStart();
         jse.executeScript(
                 String.format(
                         ApiCommands.Commands.PLAY_SEGMENT_CMD_TEMPLATE.getCommandString(),
                         WebPlayerConstants.PLAYERS_ON_PAGE,
                         1));
-        playerAction.waitForSpinnerDisappear();
+        playerAction.checkAdPlayback();
+        playerAction.waitForPlaybackStart();
         Assert.assertEquals(
                 Integer.parseInt(jse.executeScript(
                         String.format(
@@ -55,7 +55,8 @@ public class Api extends WebPlayerBaseTest {
                                 0))
                         .toString()),
                 getTimeOfElementInSeconds(currentPlaybackTime), 5,
-                "Current Playback time and scrubbed time doesn't match. Delta 5 sec");
+                "Current Playback time and scrubbed time doesn't match. Delta was 5 sec");
+
     }
 
     @Test(enabled = false)
@@ -77,26 +78,6 @@ public class Api extends WebPlayerBaseTest {
                         .toString(),
                 String.valueOf(WebPlayerConstants.VOLUME_LEVEL),
                 "Volume levels doesn't match");
-    }
-
-    @Test(enabled = false)
-    public void adCheck() {
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        jse.executeScript(String.format(ApiCommands.Commands.PAUSE_VIDEO_CMD.getCommandString(), WebPlayerConstants.PLAYERS_ON_PAGE));
-        //pageLoadWait.until(ExpectedConditions.visibilityOf(progressBar));
-        //playerAction.waitForPlaybackStart();
-        playerAction.checkAdGuiMetadata();
-
-    }
-
-    @Test (enabled = false)
-    public void checkAdCount(){
-        baseWebPage.openTestRigPage(ContentTypes.ContentType.FULL_EPISODE);
-        System.out.println(
-        jse.executeScript(String.format(ApiCommands.Commands.GET_AD_COUNT.getCommandString(),WebPlayerConstants.PLAYERS_ON_PAGE))
-        );
-
-
     }
 
 }
