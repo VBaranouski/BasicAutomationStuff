@@ -35,6 +35,7 @@
             <class name="web.player.tests.proxyTests.MediaGenTests" />
             <class name="web.player.tests.proxyTests.MegaBeaconTests" />
             <class name="web.player.tests.proxyTests.PmtTests" />
+            <class name="web.player.tests.ads.Ads" />
         </classes>
     </test>
 

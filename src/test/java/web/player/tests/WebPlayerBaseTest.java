@@ -19,6 +19,7 @@ public class WebPlayerBaseTest {
     public static Actions action;
     public static Wait elementWait;
     public static Wait pageLoadWait;
+    public static Wait adPlaybackWait;
     public static Wait crossSegmentScrubWait;
     public JavascriptExecutor jse;
 
@@ -35,6 +36,7 @@ public class WebPlayerBaseTest {
         elementWait = new WebDriverWait(driver, 5);
         pageLoadWait = new WebDriverWait(driver, 30);
         crossSegmentScrubWait = new WebDriverWait(driver, 150);
+        adPlaybackWait = new WebDriverWait(driver, 150);
         baseWebPage = new BaseWebPage(driver);
         playerAction = new BaseWebPage(driver);
         action = new Actions(driver);
